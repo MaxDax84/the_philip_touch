@@ -48,7 +48,7 @@ export default function Home() {
         <h1 className="font-serif text-4xl md:text-5xl font-semibold text-[#e8e0d0] leading-tight tracking-tight">
           L&apos;Arte dell&apos;Offesa Elegante
         </h1>
-        <p className="font-sans text-sm text-[#6b6259] tracking-wide max-w-sm mx-auto mt-2">
+        <p className="font-sans text-sm text-[#a09080] tracking-wide max-w-sm mx-auto mt-2">
           Perché certe verità meritano di essere dette con stile.
         </p>
       </header>
@@ -70,7 +70,7 @@ export default function Home() {
             className="
               w-full bg-[#111111] border border-[#1e1e1e] rounded-sm
               px-5 py-4 text-[#c8bfad] font-sans text-sm leading-relaxed
-              placeholder:text-[#3a3530] resize-none outline-none
+              placeholder:text-[#5a5248] resize-none outline-none
               focus:border-[rgba(197,160,89,0.35)] transition-colors duration-300
               tracking-wide
             "
@@ -102,7 +102,7 @@ export default function Home() {
             disabled={isPending}
             title="Ispirazione Casuale"
             className="
-              border border-[#1e1e1e] text-[#6b6259] px-4 py-3.5 rounded-sm
+              border border-[#2a2a2a] text-[#9a8f82] px-4 py-3.5 rounded-sm
               hover:border-[rgba(197,160,89,0.3)] hover:text-[#c5a059]
               disabled:opacity-40 disabled:cursor-not-allowed
               transition-all duration-200 flex items-center gap-2
@@ -133,7 +133,7 @@ export default function Home() {
 
             {/* Card header */}
             <div className="text-center mb-6 pb-5 border-b border-[#1a1a1a]">
-              <p className="font-sans text-[10px] tracking-[0.4em] text-[#4a4540] uppercase">
+              <p className="font-sans text-[10px] tracking-[0.4em] text-[#7a7068] uppercase">
                 Nota per il destinatario
               </p>
             </div>
@@ -145,7 +145,7 @@ export default function Home() {
 
             {/* Card footer */}
             <div className="text-center mt-6 pt-5 border-t border-[#1a1a1a]">
-              <p className="font-sans text-[10px] tracking-[0.3em] text-[#3a3530] uppercase">
+              <p className="font-sans text-[10px] tracking-[0.3em] text-[#6a6058] uppercase">
                 con sincero disprezzo
               </p>
             </div>
@@ -156,8 +156,8 @@ export default function Home() {
                 onClick={handleCopy}
                 className="
                   flex items-center gap-2 font-sans text-[10px] tracking-[0.25em] uppercase
-                  text-[#4a4540] hover:text-[#c5a059] transition-colors duration-200
-                  border border-[#1e1e1e] hover:border-[rgba(197,160,89,0.3)]
+                  text-[#7a7068] hover:text-[#c5a059] transition-colors duration-200
+                  border border-[#2a2a2a] hover:border-[rgba(197,160,89,0.3)]
                   px-5 py-2.5 rounded-sm
                 "
               >
@@ -182,7 +182,7 @@ export default function Home() {
       {isPending && (
         <section className="w-full max-w-xl mt-12">
           <div className="border border-[#1a1a1a] rounded-sm p-10 text-center">
-            <p className="font-sans text-xs tracking-[0.3em] text-[#3a3530] uppercase animate-shimmer">
+            <p className="font-sans text-xs tracking-[0.3em] text-[#6a6058] uppercase animate-shimmer">
               Affilando il pensiero…
             </p>
           </div>
@@ -196,7 +196,7 @@ export default function Home() {
           <div className="w-1 h-1 rounded-full bg-[#2a2520]" />
           <div className="h-px w-8 bg-[#1e1e1e]" />
         </div>
-        <p className="font-sans text-[10px] tracking-[0.3em] text-[#2a2520] uppercase">
+        <p className="font-sans text-[10px] tracking-[0.3em] text-[#4a4540] uppercase">
           Elegance is the only true luxury
         </p>
       </footer>
