@@ -39,17 +39,17 @@ export default function Home() {
       {/* Header */}
       <header className="text-center mb-8">
         <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="h-px w-10 bg-[#c5a059] opacity-70" />
+          <div className="h-px w-10 bg-[#c5a059]" />
           <Feather size={12} className="text-[#c5a059]" />
-          <div className="h-px w-10 bg-[#c5a059] opacity-70" />
+          <div className="h-px w-10 bg-[#c5a059]" />
         </div>
         <p className="font-sans text-[10px] tracking-[0.35em] text-[#c5a059] uppercase mb-1">
           The Phil Thing
         </p>
-        <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f0ebe0] leading-tight tracking-tight">
+        <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
           L&apos;Arte dell&apos;Offesa Elegante
         </h1>
-        <p className="font-sans text-xs text-[#b8ac9c] tracking-wide mt-2">
+        <p className="font-sans text-xs text-[#c8baa6] tracking-wide mt-2">
           Perché certe verità meritano di essere dette con stile.
         </p>
       </header>
@@ -71,10 +71,10 @@ export default function Home() {
             placeholder="Descrivi la vittima o la situazione (es. collega logorroico)..."
             rows={5}
             className="
-              w-full bg-[#161616] border border-[#2e2e2e] rounded-sm
-              px-5 py-4 text-[#d8d0be] font-sans text-sm leading-relaxed
-              placeholder:text-[#6a6258] resize-none outline-none
-              focus:border-[rgba(197,160,89,0.5)] transition-colors duration-300
+              w-full bg-[#181818] border border-[#383838] rounded-sm
+              px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
+              placeholder:text-[#786858] resize-none outline-none
+              focus:border-[rgba(197,160,89,0.7)] transition-colors duration-300
               tracking-wide
             "
           />
@@ -102,8 +102,8 @@ export default function Home() {
               disabled={isPending}
               title="Ispirazione Casuale"
               className="
-                border border-[#3a3a3a] text-[#b0a898] px-4 py-3.5 rounded-sm
-                hover:border-[rgba(197,160,89,0.5)] hover:text-[#c5a059]
+                border border-[#484848] text-[#c8baa6] px-4 py-3.5 rounded-sm
+                hover:border-[#c5a059] hover:text-[#c5a059]
                 disabled:opacity-40 disabled:cursor-not-allowed
                 transition-all duration-200 flex items-center gap-2
               "
@@ -116,18 +116,19 @@ export default function Home() {
           </div>
 
           {/* Hint */}
-          <p className="font-sans text-[10px] tracking-widest text-[#4a4540] uppercase text-center">
+          <p className="font-sans text-[10px] tracking-widest text-[#786858] uppercase text-center">
             Invio per generare · Shift+Invio per andare a capo
           </p>
         </section>
 
         {/* Right — Result card (always visible) */}
         <section className="relative">
+
           {/* Empty state */}
           {!result && !isPending && (
-            <div className="border border-[#1e1e1e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[220px]">
-              <span className="text-[#c5a059] opacity-20 text-3xl mb-4">❧</span>
-              <p className="font-sans text-[11px] tracking-[0.3em] text-[#3a3530] uppercase">
+            <div className="border border-[#2a2a2a] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[220px]">
+              <span className="text-[#c5a059] opacity-30 text-3xl mb-4">❧</span>
+              <p className="font-sans text-[11px] tracking-[0.3em] text-[#686058] uppercase">
                 L&apos;insulto apparirà qui
               </p>
             </div>
@@ -135,9 +136,9 @@ export default function Home() {
 
           {/* Loading state */}
           {isPending && (
-            <div className="border border-[#2e2e2e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[220px]">
-              <span className="text-[#c5a059] opacity-30 text-3xl mb-4 animate-shimmer">❧</span>
-              <p className="font-sans text-[11px] tracking-[0.3em] text-[#8a8078] uppercase animate-shimmer">
+            <div className="border border-[#383838] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[220px]">
+              <span className="text-[#c5a059] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
+              <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase animate-shimmer">
                 Affilando il pensiero…
               </p>
             </div>
@@ -145,24 +146,24 @@ export default function Home() {
 
           {/* Result */}
           {result && !isPending && (
-            <div className="relative bg-[#111111] border border-[rgba(197,160,89,0.35)] rounded-sm p-7 animate-fade-in-up">
-              <span className="absolute top-3 left-3 text-[#c5a059] opacity-50 text-xs">❧</span>
-              <span className="absolute top-3 right-3 text-[#c5a059] opacity-50 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 left-3 text-[#c5a059] opacity-50 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 right-3 text-[#c5a059] opacity-50 text-xs">❧</span>
+            <div className="relative bg-[#141414] border border-[rgba(197,160,89,0.5)] rounded-sm p-7 animate-fade-in-up">
+              <span className="absolute top-3 left-3 text-[#c5a059] opacity-70 text-xs">❧</span>
+              <span className="absolute top-3 right-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 left-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 right-3 text-[#c5a059] opacity-70 text-xs">❧</span>
 
-              <div className="text-center mb-5 pb-4 border-b border-[#2a2a2a]">
-                <p className="font-sans text-[11px] tracking-[0.4em] text-[#9a9088] uppercase">
+              <div className="text-center mb-5 pb-4 border-b border-[#303030]">
+                <p className="font-sans text-[11px] tracking-[0.4em] text-[#b8a890] uppercase">
                   Nota per il destinatario
                 </p>
               </div>
 
-              <blockquote className="font-serif text-lg text-[#f0ebe0] leading-relaxed tracking-wide text-center italic">
+              <blockquote className="font-serif text-lg text-[#f5f0e6] leading-relaxed tracking-wide text-center italic">
                 {result}
               </blockquote>
 
-              <div className="text-center mt-5 pt-4 border-t border-[#2a2a2a]">
-                <p className="font-sans text-[11px] tracking-[0.3em] text-[#8a8078] uppercase">
+              <div className="text-center mt-5 pt-4 border-t border-[#303030]">
+                <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase">
                   con sincero disprezzo
                 </p>
               </div>
@@ -172,8 +173,8 @@ export default function Home() {
                   onClick={handleCopy}
                   className="
                     flex items-center gap-2 font-sans text-[11px] tracking-[0.25em] uppercase
-                    text-[#9a9088] hover:text-[#c5a059] transition-colors duration-200
-                    border border-[#3a3a3a] hover:border-[rgba(197,160,89,0.5)]
+                    text-[#b8a890] hover:text-[#c5a059] transition-colors duration-200
+                    border border-[#484848] hover:border-[#c5a059]
                     px-5 py-2.5 rounded-sm
                   "
                 >
@@ -198,11 +199,11 @@ export default function Home() {
       {/* Footer */}
       <footer className="text-center mt-8">
         <div className="flex items-center justify-center gap-3 mb-2">
-          <div className="h-px w-8 bg-[#2e2e2e]" />
-          <div className="w-1 h-1 rounded-full bg-[#3a3530]" />
-          <div className="h-px w-8 bg-[#2e2e2e]" />
+          <div className="h-px w-8 bg-[#383838]" />
+          <div className="w-1 h-1 rounded-full bg-[#484848]" />
+          <div className="h-px w-8 bg-[#383838]" />
         </div>
-        <p className="font-sans text-[10px] tracking-[0.3em] text-[#6a6258] uppercase">
+        <p className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase">
           Elegance is the only true luxury
         </p>
       </footer>
