@@ -26,7 +26,7 @@ export function getRandomInsult(): string {
 }
 
 export function buildPrompt(input: string): string {
-  return `Trasforma questo concetto in un commento cinico, distaccato, privo di volgarità e molto sofisticato: "${input}". Il commento deve essere un insulto elegante e filosofico, mai volgare, che colpisca l'intelletto e l'ego con precisione clinica. Scrivi in italiano, in una sola frase o due al massimo.`;
+  return `Contesto: "${input}". Genera un insulto diretto, elegante e tagliente rivolto alla persona o alla situazione descritta. Scrivi in seconda persona singolare (tu/lei) o come osservazione diretta, senza mai ripetere o citare le parole del contesto. L'insulto deve sembrare una verità detta con distacco aristocratico — cinico, sottile, mai volgare. Una o due frasi al massimo, in italiano.`;
 }
 
 export async function generateInsult(input: string): Promise<string> {
@@ -69,13 +69,18 @@ export async function generateInsult(input: string): Promise<string> {
   }
 }
 
-function wrapInContext(input: string): string {
+function wrapInContext(_input: string): string {
   const templates = [
-    `Descrivere "${input}" come mediocre sarebbe un elogio immeritato — è qualcosa di molto più preciso: è esattamente ciò che ci si aspetta da chi non si aspetta nulla da sé stesso.`,
-    `"${input}" — un concetto che, con la giusta illuminazione e una certa pietà intellettuale, potrebbe quasi essere scambiato per un pensiero.`,
-    `Chi incarna "${input}" ha raggiunto quella rara perfezione per cui ogni sforzo di miglioramento sembrerebbe, a questo punto, una forma di ottimismo mal riposto.`,
-    `"${input}" è il tipo di caratteristica che si nota immediatamente e si dimentica difficilmente — non perché impressioni, ma perché delude con tale costanza da diventare quasi affidabile.`,
-    `Nel vasto catalogo delle qualità umane, "${input}" occupa quella posizione discreta e immobile che nessuno rivendica e che, tuttavia, qualcuno inevitabilmente rappresenta.`,
+    "Hai raggiunto quella rara perfezione per cui ogni sforzo di miglioramento sembrerebbe, a questo punto, una forma di ottimismo mal riposto.",
+    "La tua presenza intellettuale ricorda quella di un piattino da caffè — sufficiente per contenere qualcosa, insufficiente per impressionare chiunque.",
+    "Parli molto. Dici poco. Un'equazione che, in ambito matematico, si chiamerebbe errore di calcolo.",
+    "Non ti mancano le opinioni. Ti mancano le ragioni per averle.",
+    "Hai l'entusiasmo di chi non sa abbastanza per essere cauto — e si vede, con dolorosa chiarezza.",
+    "La tua autostima e le tue capacità reali conducono vite parallele, senza mai incontrarsi.",
+    "Ogni tua certezza è un'intuizione mai sottoposta al rigore del dubbio. Il risultato è esattamente quello che sembra.",
+    "Hai il dono di trasformare ogni conversazione in un monumento al nulla — elegante nella forma, vuoto nella sostanza.",
+    "Non è che tu sia noioso — è che la tua compagnia offre una qualità di vuoto difficilmente replicabile.",
+    "Il tuo contributo è sempre proporzionato alla tua comprensione — e questo, sfortunatamente, spiega tutto.",
   ];
   return templates[Math.floor(Math.random() * templates.length)];
 }
