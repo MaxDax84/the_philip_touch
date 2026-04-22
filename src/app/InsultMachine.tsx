@@ -87,10 +87,6 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
             <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#c5a059] transition-colors duration-200 whitespace-nowrap">
               oppure personalizza
             </span>
-            <span
-              className={`w-1.5 h-1.5 rounded-full ${hasApi ? "bg-emerald-500" : "bg-red-700"}`}
-              title={hasApi ? "AI attiva" : "AI non configurata"}
-            />
             <ChevronDown
               size={11}
               className={`text-[#786858] group-hover:text-[#c5a059] transition-all duration-300 ${showCustomize ? "rotate-180" : ""}`}
