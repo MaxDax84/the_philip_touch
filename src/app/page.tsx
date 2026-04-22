@@ -16,7 +16,7 @@ export default function LandingPage() {
           The Philip Touch
         </p>
         <h1 className="font-serif text-4xl md:text-5xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
-          Scegli la tua arma
+          Che cosa vuoi dire?
         </h1>
         <p className="font-sans text-xs text-[#c8baa6] tracking-wide mt-3 max-w-sm mx-auto">
           Due modi diversi di dire la stessa cosa. Entrambi legali.
