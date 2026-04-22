@@ -1,20 +1,24 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Copy, Check, Feather, Wind } from "lucide-react";
+import { Copy, Check, Wind } from "lucide-react";
 import { transformRage } from "@/app/actions/transform";
 import Link from "next/link";
+import { useLanguage } from "@/lib/useLanguage";
+import { t } from "@/lib/translations";
 
 export default function CalmMachine() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const { lang, toggleLang } = useLanguage();
+  const tr = t[lang];
 
   function handleTransform() {
     if (!input.trim()) return;
     startTransition(async () => {
-      const calm = await transformRage(input.trim());
+      const calm = await transformRage(input.trim(), lang);
       setResult(calm);
       setCopied(false);
     });
@@ -31,26 +35,36 @@ export default function CalmMachine() {
     <main className="flex flex-col min-h-screen px-6 md:px-12 py-8 max-w-5xl mx-auto w-full">
 
       {/* Header */}
-      <header className="text-center mb-8">
+      <header className="text-center mb-8 relative">
+        {/* Language toggle */}
+        <button
+          onClick={toggleLang}
+          className="absolute top-0 right-0 font-sans text-xs text-[#b0a898] hover:text-[#f5f0e6] transition-colors duration-200 flex items-center gap-1.5"
+          title={lang === "it" ? "Switch to English" : "Passa all'italiano"}
+        >
+          <span className="text-base">{lang === "it" ? "🇬🇧" : "🇮🇹"}</span>
+          <span className="tracking-widest uppercase text-[10px]">{lang === "it" ? "EN" : "IT"}</span>
+        </button>
+
         <div className="flex items-center justify-center gap-3 mb-3">
           <div className="h-px w-10 bg-[#e8b84b]" />
           <Wind size={12} className="text-[#f5f0e6]" />
           <div className="h-px w-10 bg-[#e8b84b]" />
         </div>
         <p className="font-sans text-[10px] tracking-[0.35em] text-[#f5f0e6] uppercase mb-1">
-          The Philip Touch
+          {tr.tagline}
         </p>
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
-          La Valvola di Sfogo
+          {tr.calmTitle}
         </h1>
         <p className="font-sans text-xs text-[#d8d2c8] tracking-wide mt-2">
-          Di' quello che pensi davvero. Noi lo rendiamo presentabile.
+          {tr.calmSubtitle}
         </p>
         <Link
           href="/"
           className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#b0a898] uppercase hover:text-[#f5f0e6] transition-colors duration-200"
         >
-          ← Homepage
+          {tr.homepage}
         </Link>
       </header>
 
@@ -68,7 +82,7 @@ export default function CalmMachine() {
                 handleTransform();
               }
             }}
-            placeholder="Scrivi quello che vorresti davvero dire (anche le peggiori parolacce)..."
+            placeholder={tr.calmPlaceholder}
             rows={7}
             className="
               w-full bg-[#332e28] border border-[#38342e] rounded-sm
@@ -89,10 +103,10 @@ export default function CalmMachine() {
               transition-all duration-200
             "
           >
-            {isPending ? "Elaborazione…" : "Trasforma in qualcosa di presentabile"}
+            {isPending ? tr.processing : tr.calmBtn}
           </button>
           <p className="font-sans text-[10px] tracking-widest text-[#b0a898] uppercase text-center">
-            Invio per trasformare · Shift+Invio per andare a capo
+            {tr.calmHint}
           </p>
         </section>
 
@@ -102,7 +116,7 @@ export default function CalmMachine() {
             <div className="border border-[#2e2b27] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
               <span className="text-[#e8b84b] opacity-25 text-3xl mb-4">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09890] uppercase">
-                La versione presentabile apparirà qui
+                {tr.calmEmptyState}
               </p>
             </div>
           )}
@@ -111,7 +125,7 @@ export default function CalmMachine() {
             <div className="border border-[#38342e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
               <span className="text-[#e8b84b] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#c0b8b0] uppercase animate-shimmer">
-                Addomesticando la rabbia…
+                {tr.calmLoading}
               </p>
             </div>
           )}
@@ -125,7 +139,7 @@ export default function CalmMachine() {
 
               <div className="text-center mb-5 pb-4 border-b border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.4em] text-[#d0c8be] uppercase">
-                  Versione civilizzata
+                  {tr.calmCardHeader}
                 </p>
               </div>
 
@@ -135,7 +149,7 @@ export default function CalmMachine() {
 
               <div className="text-center mt-5 pt-4 border-t border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.3em] text-[#c0b8b0] uppercase">
-                  detto con il sorriso
+                  {tr.calmCardFooter}
                 </p>
               </div>
 
@@ -152,12 +166,12 @@ export default function CalmMachine() {
                   {copied ? (
                     <>
                       <Check size={11} className="text-[#f5f0e6]" />
-                      <span className="text-[#f5f0e6]">Copiato</span>
+                      <span className="text-[#f5f0e6]">{tr.copied}</span>
                     </>
                   ) : (
                     <>
                       <Copy size={11} />
-                      Copia e usa in tutta sicurezza
+                      {tr.calmCopyBtn}
                     </>
                   )}
                 </button>
@@ -173,7 +187,7 @@ export default function CalmMachine() {
           href="/"
           className="inline-block font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase hover:text-[#f5f0e6] transition-colors duration-200 border border-[#2e2b27] hover:border-[rgba(232,184,75,0.4)] px-5 py-2.5 rounded-sm"
         >
-          ← Homepage
+          {tr.homepage}
         </Link>
         <div className="flex items-center justify-center gap-3">
           <div className="h-px w-8 bg-[#2e2b27]" />
@@ -181,7 +195,7 @@ export default function CalmMachine() {
           <div className="h-px w-8 bg-[#2e2b27]" />
         </div>
         <p className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase">
-          La rabbia è umana. Le conseguenze legali no.
+          {tr.calmFooter}
         </p>
       </footer>
 

@@ -321,11 +321,48 @@ export const PHILOSOPHICAL_INSULTS: string[] = [
   "In definitiva, sei solo polvere che si crede una tempesta.",
 ];
 
-export function getRandomInsult(): string {
+export const ENGLISH_INSULTS: string[] = [
+  "Your intellectual depth resembles that of a decorative coaster — present, but entirely purposeless.",
+  "You have the rare gift of transforming every conversation into an exercise in collective patience.",
+  "Your presence in a room is not so much suffocating as it is decoratively useless, like an unlit chandelier in summer.",
+  "You speak at length. You say nothing. In mathematics, this would be called an error of calculation.",
+  "Your optimism is so impervious to reality that it almost qualifies as a gift. Almost.",
+  "You are not unintelligent — you are something more refined: the logical outcome of a thought never quite finished.",
+  "You have the extraordinary capacity to fill silence without ever adding anything to it.",
+  "Every idea you have is a debut work and, mercifully, also a final one.",
+  "Your mediocrity has achieved such perfection that it has almost become an art form.",
+  "Listening to you is like reading the instructions for a household appliance: theoretically necessary, practically dispiriting.",
+  "You have the enthusiasm of someone who doesn't know enough to be cautious.",
+  "Your contribution to any conversation is always proportional to your understanding of it — which explains a great deal.",
+  "You have no shortage of opinions. You have a shortage of reasons for having them.",
+  "You are the type of person one calls 'insightful' to avoid explaining why they are not.",
+  "Your confidence would be admirable, were it not so precisely devoid of foundation.",
+  "I take a moment to appreciate how thoroughly convinced you are of yourself. A moment is sufficient.",
+  "I could agree with you, but then we would both be wrong.",
+  "Your self-esteem and your actual abilities lead parallel lives, never once meeting.",
+  "You speak as someone who has read the back cover and considers themselves ready to give a lecture.",
+  "The most generous thing one can say about you is that you probably don't realize it.",
+];
+
+export function getRandomInsult(lang = "it"): string {
+  if (lang === "en") return ENGLISH_INSULTS[Math.floor(Math.random() * ENGLISH_INSULTS.length)];
   return PHILOSOPHICAL_INSULTS[Math.floor(Math.random() * PHILOSOPHICAL_INSULTS.length)];
 }
 
-export function buildPrompt(input: string): string {
+export function buildPrompt(input: string, lang = "it"): string {
+  if (lang === "en") {
+    return `Target — person or situation: "${input}".
+
+Write an elegant, cynical and direct insult clearly inspired by this specific context. The insult must:
+- Be in second person singular (you/your/you're)
+- Clearly refer to the described situation or person, without quoting it word for word
+- Strike the contradiction, weakness or irony implicit in the context
+- Have a detached, aristocratic tone — never vulgar
+- Be one or two sentences maximum
+
+Respond only with the insult, no preamble or explanation.`;
+  }
+
   return `Situazione o persona da colpire: "${input}".
 
 Scrivi un insulto elegante, cinico e diretto che sia chiaramente ispirato da questo contesto specifico. L'insulto deve:
@@ -338,12 +375,12 @@ Scrivi un insulto elegante, cinico e diretto che sia chiaramente ispirato da que
 Rispondi solo con l'insulto, senza prefazioni o spiegazioni.`;
 }
 
-export async function generateInsult(input: string): Promise<string> {
+export async function generateInsult(input: string, lang = "it"): Promise<string> {
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
     await simulateDelay();
-    return wrapInContext(input);
+    return getRandomInsult(lang);
   }
 
   try {
@@ -353,9 +390,7 @@ export async function generateInsult(input: string): Promise<string> {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contents: [{
-          parts: [{ text: buildPrompt(input) }],
-        }],
+        contents: [{ parts: [{ text: buildPrompt(input, lang) }] }],
         generationConfig: {
           maxOutputTokens: 300,
           temperature: 0.9,
@@ -366,7 +401,7 @@ export async function generateInsult(input: string): Promise<string> {
 
     if (!response.ok) {
       console.error("Gemini error:", response.status, await response.text());
-      return getRandomInsult();
+      return getRandomInsult(lang);
     }
 
     const data = await response.json();
@@ -375,10 +410,10 @@ export async function generateInsult(input: string): Promise<string> {
       .filter((p: { text?: string }) => p.text)
       .map((p: { text: string }) => p.text)
       .join("").trim();
-    return text || getRandomInsult();
+    return text || getRandomInsult(lang);
   } catch (e) {
     console.error("generateInsult failed:", e);
-    return getRandomInsult();
+    return getRandomInsult(lang);
   }
 }
 

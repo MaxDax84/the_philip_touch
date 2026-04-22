@@ -4,6 +4,8 @@ import { useState, useTransition } from "react";
 import { Shuffle, Copy, Check, Feather, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { generateFromInput, generateRandom } from "@/app/actions/generate";
+import { useLanguage } from "@/lib/useLanguage";
+import { t } from "@/lib/translations";
 
 export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
   const [input, setInput] = useState("");
@@ -11,10 +13,12 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [showCustomize, setShowCustomize] = useState(true);
+  const { lang, toggleLang } = useLanguage();
+  const tr = t[lang];
 
   function handleRandom() {
     startTransition(async () => {
-      const insult = await generateRandom();
+      const insult = await generateRandom(lang);
       setResult(insult);
       setCopied(false);
     });
@@ -22,7 +26,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
 
   function handleGenerate() {
     startTransition(async () => {
-      const insult = await generateFromInput(input);
+      const insult = await generateFromInput(input, lang);
       setResult(insult);
       setCopied(false);
     });
@@ -39,26 +43,36 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
     <main className="flex flex-col min-h-screen px-6 md:px-12 py-8 max-w-5xl mx-auto w-full">
 
       {/* Header */}
-      <header className="text-center mb-8">
+      <header className="text-center mb-8 relative">
+        {/* Language toggle */}
+        <button
+          onClick={toggleLang}
+          className="absolute top-0 right-0 font-sans text-xs text-[#b0a898] hover:text-[#f5f0e6] transition-colors duration-200 flex items-center gap-1.5"
+          title={lang === "it" ? "Switch to English" : "Passa all'italiano"}
+        >
+          <span className="text-base">{lang === "it" ? "🇬🇧" : "🇮🇹"}</span>
+          <span className="tracking-widest uppercase text-[10px]">{lang === "it" ? "EN" : "IT"}</span>
+        </button>
+
         <div className="flex items-center justify-center gap-3 mb-3">
           <div className="h-px w-10 bg-[#e8b84b]" />
           <Feather size={12} className="text-[#f5f0e6]" />
           <div className="h-px w-10 bg-[#e8b84b]" />
         </div>
         <p className="font-sans text-[10px] tracking-[0.35em] text-[#f5f0e6] uppercase mb-1">
-          The Philip Touch
+          {tr.tagline}
         </p>
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
-          L&apos;Arte dell&apos;Offesa Elegante
+          {tr.insultTitle}
         </h1>
         <p className="font-sans text-xs text-[#d8d2c8] tracking-wide mt-2">
-          Perché certe verità meritano di essere dette con stile.
+          {tr.insultSubtitle}
         </p>
         <Link
           href="/"
           className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#b0a898] uppercase hover:text-[#f5f0e6] transition-colors duration-200"
         >
-          ← Homepage
+          {tr.homepage}
         </Link>
       </header>
 
@@ -82,7 +96,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
             "
           >
             <Shuffle size={16} />
-            {isPending ? "Elaborazione…" : "Genera insulto casuale"}
+            {isPending ? tr.processing : tr.randomBtn}
           </button>
 
           {/* Divider — toggle */}
@@ -92,7 +106,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           >
             <div className="flex-1 h-px bg-[#2e2b27]" />
             <span className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase group-hover:text-[#f5f0e6] transition-colors duration-200 whitespace-nowrap">
-              oppure personalizza
+              {tr.orCustomize}
             </span>
             <ChevronDown
               size={11}
@@ -115,7 +129,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                         handleGenerate();
                       }
                     }}
-                    placeholder="Descrivi la vittima o la situazione (es. collega logorroico)..."
+                    placeholder={tr.placeholder}
                     rows={4}
                     className="
                       w-full bg-[#332e28] border border-[#38342e] rounded-sm
@@ -136,19 +150,19 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                       transition-all duration-200
                     "
                   >
-                    {isPending ? "Elaborazione…" : "Evolvi l'Offesa"}
+                    {isPending ? tr.processing : tr.evolveBtn}
                   </button>
                   <p className="font-sans text-[10px] tracking-widest text-[#b0a898] uppercase text-center">
-                    Invio per generare · Shift+Invio per andare a capo
+                    {tr.enterHint}
                   </p>
                 </>
               ) : (
                 <div className="border border-dashed border-[#38342e] rounded-sm px-6 py-5 text-center">
                   <p className="font-sans text-xs text-[#d8d2c8] tracking-wide mb-1">
-                    Funzionalità in arrivo
+                    {tr.comingSoon}
                   </p>
                   <p className="font-sans text-[11px] text-[#b0a898] tracking-wide">
-                    La personalizzazione richiede un&apos;integrazione AI non ancora attiva.
+                    {tr.comingSoonDesc}
                   </p>
                 </div>
               )}
@@ -162,7 +176,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
             <div className="border border-[#2e2b27] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
               <span className="text-[#e8b84b] opacity-25 text-3xl mb-4">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09890] uppercase">
-                L&apos;insulto apparirà qui
+                {tr.emptyState}
               </p>
             </div>
           )}
@@ -171,7 +185,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
             <div className="border border-[#38342e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
               <span className="text-[#e8b84b] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#c0b8b0] uppercase animate-shimmer">
-                Affilando il pensiero…
+                {tr.loading}
               </p>
             </div>
           )}
@@ -185,7 +199,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
 
               <div className="text-center mb-5 pb-4 border-b border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.4em] text-[#d0c8be] uppercase">
-                  Nota per il destinatario
+                  {tr.cardHeader}
                 </p>
               </div>
 
@@ -195,7 +209,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
 
               <div className="text-center mt-5 pt-4 border-t border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.3em] text-[#c0b8b0] uppercase">
-                  con sincero disprezzo
+                  {tr.cardFooter}
                 </p>
               </div>
 
@@ -212,12 +226,12 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                   {copied ? (
                     <>
                       <Check size={11} className="text-[#f5f0e6]" />
-                      <span className="text-[#f5f0e6]">Copiato</span>
+                      <span className="text-[#f5f0e6]">{tr.copied}</span>
                     </>
                   ) : (
                     <>
                       <Copy size={11} />
-                      Copia per il destinatario
+                      {tr.copyBtn}
                     </>
                   )}
                 </button>
@@ -235,7 +249,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           <div className="h-px w-8 bg-[#2e2b27]" />
         </div>
         <p className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase">
-          Elegance is the only true luxury
+          {tr.footer}
         </p>
       </footer>
 

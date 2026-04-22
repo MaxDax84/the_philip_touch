@@ -1,9 +1,26 @@
+"use client";
+
 import Link from "next/link";
 import { Feather, Wind } from "lucide-react";
+import { useLanguage } from "@/lib/useLanguage";
+import { t } from "@/lib/translations";
 
 export default function LandingPage() {
+  const { lang, toggleLang } = useLanguage();
+  const tr = t[lang];
+
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen px-6 py-12">
+    <main className="flex flex-col items-center justify-center min-h-screen px-6 py-12 relative">
+
+      {/* Language toggle */}
+      <button
+        onClick={toggleLang}
+        className="absolute top-6 right-6 font-sans text-xs text-[#b0a898] hover:text-[#f5f0e6] transition-colors duration-200 flex items-center gap-1.5"
+        title={lang === "it" ? "Switch to English" : "Passa all'italiano"}
+      >
+        <span className="text-base">{lang === "it" ? "🇬🇧" : "🇮🇹"}</span>
+        <span className="tracking-widest uppercase text-[10px]">{lang === "it" ? "EN" : "IT"}</span>
+      </button>
 
       {/* Header */}
       <header className="text-center mb-12">
@@ -13,20 +30,20 @@ export default function LandingPage() {
           <div className="h-px w-10 bg-[#e8b84b]" />
         </div>
         <p className="font-sans text-[10px] tracking-[0.4em] text-[#f5f0e6] uppercase mb-2">
-          The Philip Touch
+          {tr.tagline}
         </p>
         <h1 className="font-serif text-4xl md:text-5xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
-          Che cosa vuoi dire?
+          {tr.headline}
         </h1>
-        <p className="font-sans text-xs text-[#c8baa6] tracking-wide mt-3 max-w-sm mx-auto">
-          Due modi diversi di dire la stessa cosa. Entrambi legali.
+        <p className="font-sans text-xs text-[#d8d2c8] tracking-wide mt-3 max-w-sm mx-auto">
+          {tr.subheadline}
         </p>
       </header>
 
       {/* Two big cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
 
-        {/* Card 1 — The Philip Touch */}
+        {/* Card 1 — The Elegant Insult */}
         <Link href="/touch" className="group block">
           <div className="
             relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
@@ -43,22 +60,22 @@ export default function LandingPage() {
             </div>
             <div>
               <p className="font-sans text-[10px] tracking-[0.3em] text-[#f5f0e6] uppercase mb-2">
-                Modalità elegante
+                {tr.card1mode}
               </p>
               <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">
-                L&apos;Offesa Elegante
+                {tr.card1title}
               </h2>
-              <p className="font-sans text-xs text-[#b8ac9c] leading-relaxed">
-                Insulti cinici, raffinati e chirurgici. Colpisci l&apos;intelletto, risparmia la galera.
+              <p className="font-sans text-xs text-[#d8d2c8] leading-relaxed">
+                {tr.card1desc}
               </p>
             </div>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
-              Entra →
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
+              {tr.enter}
             </span>
           </div>
         </Link>
 
-        {/* Card 2 — La Valvola */}
+        {/* Card 2 — The Safety Valve */}
         <Link href="/calma" className="group block">
           <div className="
             relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
@@ -75,17 +92,17 @@ export default function LandingPage() {
             </div>
             <div>
               <p className="font-sans text-[10px] tracking-[0.3em] text-[#f5f0e6] uppercase mb-2">
-                Modalità sopravvivenza
+                {tr.card2mode}
               </p>
               <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">
-                La Valvola di Sfogo
+                {tr.card2title}
               </h2>
-              <p className="font-sans text-xs text-[#b8ac9c] leading-relaxed">
-                Scrivi quello che pensi davvero. Noi lo traduciamo in qualcosa che non ti costi una denuncia.
+              <p className="font-sans text-xs text-[#d8d2c8] leading-relaxed">
+                {tr.card2desc}
               </p>
             </div>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#b8ac9c] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
-              Entra →
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
+              {tr.enter}
             </span>
           </div>
         </Link>
@@ -98,8 +115,8 @@ export default function LandingPage() {
           <div className="w-1 h-1 rounded-full bg-[#3a3530]" />
           <div className="h-px w-8 bg-[#2e2b27]" />
         </div>
-        <p className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase">
-          Elegance is the only true luxury
+        <p className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase">
+          {tr.footer}
         </p>
       </footer>
 
