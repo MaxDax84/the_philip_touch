@@ -347,7 +347,7 @@ export async function generateInsult(input: string): Promise<string> {
   }
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
       method: "POST",
@@ -368,26 +368,23 @@ export async function generateInsult(input: string): Promise<string> {
       }),
     });
 
-    if (!response.ok) throw new Error("API error");
+    if (!response.ok) {
+      const err = await response.text();
+      console.error("Gemini API error:", response.status, err);
+      throw new Error(`API error ${response.status}`);
+    }
 
     const data = await response.json();
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    return text?.trim() ?? wrapInContext(input);
-  } catch {
-    await simulateDelay();
-    return wrapInContext(input);
+    return text?.trim() ?? getRandomInsult();
+  } catch (e) {
+    console.error("generateInsult failed:", e);
+    return getRandomInsult();
   }
 }
 
-function wrapInContext(input: string): string {
-  const templates = [
-    `Ciò che descrivi con "${input}" è, nella sua essenza, la prova che alcune persone riescono a essere perfettamente coerenti con il proprio limite.`,
-    `"${input}" — una combinazione che, esaminata con la dovuta freddezza, spiega molto e giustifica poco.`,
-    `Di fronte a "${input}", la cosa più onesta che si possa dire è che hai raggiunto un equilibrio raro: quello tra apparenza e sostanza, entrambe deludenti.`,
-    `"${input}" è esattamente il tipo di situazione per cui l'ironia esiste — e tu ne sei, involontariamente, il protagonista.`,
-    `La tua descrizione di "${input}" è già, di per sé, l'insulto più preciso che potessi ricevere.`,
-  ];
-  return templates[Math.floor(Math.random() * templates.length)];
+function wrapInContext(_input: string): string {
+  return getRandomInsult();
 }
 
 function simulateDelay(): Promise<void> {
