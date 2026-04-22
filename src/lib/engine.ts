@@ -347,17 +347,12 @@ export async function generateInsult(input: string): Promise<string> {
   }
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        systemInstruction: {
-          parts: [{
-            text: "Sei un maestro dell'ironia sofisticata e del cinismo elegante. Non usi mai volgarità. I tuoi commenti sono acuti, distaccati e profondamente raffinati — come un editoriale del New Yorker scritto con malevolenza contenuta. Rispondi sempre e solo con l'insulto, senza introduzioni o spiegazioni.",
-          }],
-        },
         contents: [{
           parts: [{ text: buildPrompt(input) }],
         }],
