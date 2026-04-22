@@ -51,12 +51,12 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
           L&apos;Arte dell&apos;Offesa Elegante
         </h1>
-        <p className="font-sans text-xs text-[#c8baa6] tracking-wide mt-2">
+        <p className="font-sans text-xs text-[#d8d2c8] tracking-wide mt-2">
           Perché certe verità meritano di essere dette con stile.
         </p>
         <Link
           href="/"
-          className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#786858] uppercase hover:text-[#f5f0e6] transition-colors duration-200"
+          className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#b0a898] uppercase hover:text-[#f5f0e6] transition-colors duration-200"
         >
           ← Homepage
         </Link>
@@ -91,12 +91,12 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
             className="flex items-center gap-3 group"
           >
             <div className="flex-1 h-px bg-[#2e2b27]" />
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#f5f0e6] transition-colors duration-200 whitespace-nowrap">
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase group-hover:text-[#f5f0e6] transition-colors duration-200 whitespace-nowrap">
               oppure personalizza
             </span>
             <ChevronDown
               size={11}
-              className={`text-[#786858] group-hover:text-[#f5f0e6] transition-all duration-300 ${showCustomize ? "rotate-180" : ""}`}
+              className={`text-[#b0a898] group-hover:text-[#f5f0e6] transition-all duration-300 ${showCustomize ? "rotate-180" : ""}`}
             />
             <div className="flex-1 h-px bg-[#2e2b27]" />
           </button>
@@ -120,7 +120,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                     className="
                       w-full bg-[#332e28] border border-[#38342e] rounded-sm
                       px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
-                      placeholder:text-[#786858] resize-none outline-none
+                      placeholder:text-[#908880] resize-none outline-none
                       focus:border-[rgba(232,184,75,0.7)] transition-colors duration-300
                       tracking-wide
                     "
@@ -138,16 +138,16 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                   >
                     {isPending ? "Elaborazione…" : "Evolvi l'Offesa"}
                   </button>
-                  <p className="font-sans text-[10px] tracking-widest text-[#786858] uppercase text-center">
+                  <p className="font-sans text-[10px] tracking-widest text-[#b0a898] uppercase text-center">
                     Invio per generare · Shift+Invio per andare a capo
                   </p>
                 </>
               ) : (
                 <div className="border border-dashed border-[#38342e] rounded-sm px-6 py-5 text-center">
-                  <p className="font-sans text-xs text-[#c8baa6] tracking-wide mb-1">
+                  <p className="font-sans text-xs text-[#d8d2c8] tracking-wide mb-1">
                     Funzionalità in arrivo
                   </p>
-                  <p className="font-sans text-[11px] text-[#786858] tracking-wide">
+                  <p className="font-sans text-[11px] text-[#b0a898] tracking-wide">
                     La personalizzazione richiede un&apos;integrazione AI non ancora attiva.
                   </p>
                 </div>
@@ -161,7 +161,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           {!result && !isPending && (
             <div className="border border-[#2e2b27] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
               <span className="text-[#e8b84b] opacity-25 text-3xl mb-4">❧</span>
-              <p className="font-sans text-[11px] tracking-[0.3em] text-[#686058] uppercase">
+              <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09890] uppercase">
                 L&apos;insulto apparirà qui
               </p>
             </div>
@@ -170,7 +170,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           {isPending && (
             <div className="border border-[#38342e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
               <span className="text-[#e8b84b] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
-              <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase animate-shimmer">
+              <p className="font-sans text-[11px] tracking-[0.3em] text-[#c0b8b0] uppercase animate-shimmer">
                 Affilando il pensiero…
               </p>
             </div>
@@ -184,7 +184,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
               <span className="absolute bottom-3 right-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
 
               <div className="text-center mb-5 pb-4 border-b border-[#303030]">
-                <p className="font-sans text-[11px] tracking-[0.4em] text-[#b8a890] uppercase">
+                <p className="font-sans text-[11px] tracking-[0.4em] text-[#d0c8be] uppercase">
                   Nota per il destinatario
                 </p>
               </div>
@@ -194,7 +194,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
               </blockquote>
 
               <div className="text-center mt-5 pt-4 border-t border-[#303030]">
-                <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase">
+                <p className="font-sans text-[11px] tracking-[0.3em] text-[#c0b8b0] uppercase">
                   con sincero disprezzo
                 </p>
               </div>
@@ -204,7 +204,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                   onClick={handleCopy}
                   className="
                     flex items-center gap-2 font-sans text-[11px] tracking-[0.25em] uppercase
-                    text-[#b8a890] hover:text-[#f5f0e6] transition-colors duration-200
+                    text-[#d0c8be] hover:text-[#f5f0e6] transition-colors duration-200
                     border border-[#484848] hover:border-[#e8b84b]
                     px-5 py-2.5 rounded-sm
                   "
@@ -234,7 +234,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           <div className="w-1 h-1 rounded-full bg-[#3a3530]" />
           <div className="h-px w-8 bg-[#2e2b27]" />
         </div>
-        <p className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase">
+        <p className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase">
           Elegance is the only true luxury
         </p>
       </footer>
