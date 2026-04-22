@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition } from "react";
 import { Shuffle, Copy, Check, Feather, ChevronDown } from "lucide-react";
-import { generateFromInput, generateRandom, checkApiAvailability } from "@/app/actions/generate";
+import { generateFromInput, generateRandom } from "@/app/actions/generate";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -10,11 +10,6 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [showCustomize, setShowCustomize] = useState(true);
-  const [hasApi, setHasApi] = useState(false);
-
-  useEffect(() => {
-    checkApiAvailability().then(setHasApi);
-  }, []);
 
   function handleRandom() {
     startTransition(async () => {
@@ -102,54 +97,41 @@ export default function Home() {
           {/* Customization panel */}
           {showCustomize && (
             <div className="flex flex-col gap-3">
-              {hasApi ? (
-                <>
-                  <textarea
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        handleGenerate();
-                      }
-                    }}
-                    placeholder="Descrivi la vittima o la situazione (es. collega logorroico)..."
-                    rows={4}
-                    className="
-                      w-full bg-[#211e1a] border border-[#38342e] rounded-sm
-                      px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
-                      placeholder:text-[#786858] resize-none outline-none
-                      focus:border-[rgba(197,160,89,0.7)] transition-colors duration-300
-                      tracking-wide
-                    "
-                  />
-                  <button
-                    onClick={handleGenerate}
-                    disabled={isPending}
-                    className="
-                      w-full border border-[#c5a059] text-[#c5a059] font-sans font-semibold
-                      text-xs tracking-[0.2em] uppercase px-6 py-3.5 rounded-sm
-                      hover:bg-[#c5a059] hover:text-[#0a0a0a]
-                      disabled:opacity-50 disabled:cursor-not-allowed
-                      transition-all duration-200
-                    "
-                  >
-                    {isPending ? "Elaborazione…" : "Evolvi l'Offesa"}
-                  </button>
-                  <p className="font-sans text-[10px] tracking-widest text-[#786858] uppercase text-center">
-                    Invio per generare · Shift+Invio per andare a capo
-                  </p>
-                </>
-              ) : (
-                <div className="border border-dashed border-[#38342e] rounded-sm px-6 py-5 text-center">
-                  <p className="font-sans text-xs text-[#c8baa6] tracking-wide mb-1">
-                    Funzionalità in arrivo
-                  </p>
-                  <p className="font-sans text-[11px] text-[#786858] tracking-wide">
-                    La personalizzazione dell&apos;insulto richiede un&apos;integrazione AI non ancora attiva.
-                  </p>
-                </div>
-              )}
+              <textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleGenerate();
+                  }
+                }}
+                placeholder="Descrivi la vittima o la situazione (es. collega logorroico)..."
+                rows={4}
+                className="
+                  w-full bg-[#211e1a] border border-[#38342e] rounded-sm
+                  px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
+                  placeholder:text-[#786858] resize-none outline-none
+                  focus:border-[rgba(197,160,89,0.7)] transition-colors duration-300
+                  tracking-wide
+                "
+              />
+              <button
+                onClick={handleGenerate}
+                disabled={isPending}
+                className="
+                  w-full border border-[#c5a059] text-[#c5a059] font-sans font-semibold
+                  text-xs tracking-[0.2em] uppercase px-6 py-3.5 rounded-sm
+                  hover:bg-[#c5a059] hover:text-[#0a0a0a]
+                  disabled:opacity-50 disabled:cursor-not-allowed
+                  transition-all duration-200
+                "
+              >
+                {isPending ? "Elaborazione…" : "Evolvi l'Offesa"}
+              </button>
+              <p className="font-sans text-[10px] tracking-widest text-[#786858] uppercase text-center">
+                Invio per generare · Shift+Invio per andare a capo
+              </p>
             </div>
           )}
         </section>
