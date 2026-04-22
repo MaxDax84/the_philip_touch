@@ -10,3 +10,7 @@ export async function generateFromInput(input: string): Promise<string> {
 export async function generateRandom(): Promise<string> {
   return getRandomInsult();
 }
+
+export async function checkApiAvailability(): Promise<boolean> {
+  return !!process.env.ANTHROPIC_API_KEY;
+}
