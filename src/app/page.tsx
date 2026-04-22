@@ -18,7 +18,13 @@ export default function LandingPage() {
         className="absolute top-6 right-6 font-sans text-xs text-[#b0a898] hover:text-[#f5f0e6] transition-colors duration-200 flex items-center gap-1.5"
         title={lang === "it" ? "Switch to English" : "Passa all'italiano"}
       >
-        <span className="text-xl">{lang === "it" ? "🇬🇧" : "🇮🇹"}</span>
+        <img
+          src={lang === "it" ? "https://flagcdn.com/w40/gb.png" : "https://flagcdn.com/w40/it.png"}
+          alt={lang === "it" ? "English" : "Italiano"}
+          width={24}
+          height={16}
+          className="rounded-sm opacity-80 hover:opacity-100 transition-opacity"
+        />
       </button>
 
       {/* Header */}
