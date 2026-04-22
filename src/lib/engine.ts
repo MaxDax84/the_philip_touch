@@ -364,16 +364,16 @@ export async function generateInsult(input: string): Promise<string> {
     });
 
     if (!response.ok) {
-      console.error("Gemini API error:", response.status, await response.text());
-      return getRandomInsult();
+      const err = await response.text();
+      return `[ERRORE ${response.status}]: ${err.slice(0, 400)}`;
     }
 
     const data = await response.json();
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    return text?.trim() ?? getRandomInsult();
+    if (!text) return `[RISPOSTA VUOTA]: ${JSON.stringify(data).slice(0, 400)}`;
+    return text.trim();
   } catch (e) {
-    console.error("generateInsult failed:", e);
-    return getRandomInsult();
+    return `[ECCEZIONE]: ${String(e).slice(0, 400)}`;
   }
 }
 
