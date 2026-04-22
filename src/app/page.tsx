@@ -18,8 +18,7 @@ export default function LandingPage() {
         className="absolute top-6 right-6 font-sans text-xs text-[#b0a898] hover:text-[#f5f0e6] transition-colors duration-200 flex items-center gap-1.5"
         title={lang === "it" ? "Switch to English" : "Passa all'italiano"}
       >
-        <span className="text-base">{lang === "it" ? "🇬🇧" : "🇮🇹"}</span>
-        <span className="tracking-widest uppercase text-[10px]">{lang === "it" ? "EN" : "IT"}</span>
+        <span className="text-xl">{lang === "it" ? "🇬🇧" : "🇮🇹"}</span>
       </button>
 
       {/* Header */}
