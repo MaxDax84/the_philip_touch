@@ -30,8 +30,8 @@ export default function LandingPage() {
         <Link href="/touch" className="group block">
           <div className="
             relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
-            bg-[#211e1a] hover:border-[rgba(232,184,75,0.7)]
-            hover:bg-[#261f19] transition-all duration-300
+            bg-[#332e28] hover:border-[rgba(232,184,75,0.7)]
+            hover:bg-[#3a342d] transition-all duration-300
             flex flex-col items-center text-center gap-5 min-h-[280px] justify-center
           ">
             <div className="
