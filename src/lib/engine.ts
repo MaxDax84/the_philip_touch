@@ -330,7 +330,7 @@ export function buildPrompt(input: string): string {
 }
 
 export async function generateInsult(input: string): Promise<string> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
     await simulateDelay();
@@ -338,31 +338,32 @@ export async function generateInsult(input: string): Promise<string> {
   }
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+    const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 300,
-        messages: [
-          {
-            role: "user",
-            content: buildPrompt(input),
-          },
-        ],
-        system:
-          "Sei un maestro dell'ironia sofisticata e del cinismo elegante. Non usi mai volgarità. I tuoi commenti sono acuti, distaccati e profondamente raffinati — come un editoriale del New Yorker scritto con malevolenza contenuta.",
+        systemInstruction: {
+          parts: [{
+            text: "Sei un maestro dell'ironia sofisticata e del cinismo elegante. Non usi mai volgarità. I tuoi commenti sono acuti, distaccati e profondamente raffinati — come un editoriale del New Yorker scritto con malevolenza contenuta. Rispondi sempre e solo con l'insulto, senza introduzioni o spiegazioni.",
+          }],
+        },
+        contents: [{
+          parts: [{ text: buildPrompt(input) }],
+        }],
+        generationConfig: {
+          maxOutputTokens: 300,
+          temperature: 0.9,
+        },
       }),
     });
 
     if (!response.ok) throw new Error("API error");
 
     const data = await response.json();
-    return data.content?.[0]?.text ?? wrapInContext(input);
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    return text?.trim() ?? wrapInContext(input);
   } catch {
     await simulateDelay();
     return wrapInContext(input);

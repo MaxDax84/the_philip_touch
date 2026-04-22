@@ -12,5 +12,5 @@ export async function generateRandom(): Promise<string> {
 }
 
 export async function checkApiAvailability(): Promise<boolean> {
-  return !!process.env.ANTHROPIC_API_KEY;
+  return !!process.env.GEMINI_API_KEY;
 }
