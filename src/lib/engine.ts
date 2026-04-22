@@ -19,6 +19,16 @@ export const PHILOSOPHICAL_INSULTS: string[] = [
   "Non è che sia noioso — è che la sua compagnia offre una qualità di vuoto difficilmente replicabile.",
   "Ogni sua certezza è un'intuizione mai sottoposta al rigore del dubbio — e si vede.",
   "Ha trovato nel conformismo la sua forma di ribellione, senza accorgersi dell'ironia.",
+  "Potrei darti ragione, ma poi avremmo torto in due.",
+  "Ti ascolto con tutto l'interesse che meriti — e in questo momento non riesco a fare altro.",
+  "Non è che non capisca il tuo punto di vista: è che capirlo non cambia nulla.",
+  "Sei il tipo di persona a cui si dice 'ottima osservazione' per evitare di spiegare perché non lo è.",
+  "La tua sicurezza sarebbe ammirevole, se non fosse così accuratamente priva di fondamento.",
+  "Mi fermo un momento ad apprezzare quanto tu sia convinto di te stesso. Un momento è sufficiente.",
+  "Non ti contraddirei mai — mi basterebbe aspettare che lo faccia la realtà al posto mio.",
+  "Hai un'opinione su tutto. Peccato che tutto abbia un'opinione migliore di te.",
+  "Parli come chi ha letto la quarta di copertina e si ritiene pronto a tenere una conferenza.",
+  "La cosa più generosa che si possa dire di te è che probabilmente non te ne rendi conto.",
 ];
 
 export function getRandomInsult(): string {
