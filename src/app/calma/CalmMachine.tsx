@@ -33,11 +33,11 @@ export default function CalmMachine() {
       {/* Header */}
       <header className="text-center mb-8">
         <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="h-px w-10 bg-[#c5a059]" />
-          <Wind size={12} className="text-[#c5a059]" />
-          <div className="h-px w-10 bg-[#c5a059]" />
+          <div className="h-px w-10 bg-[#e8b84b]" />
+          <Wind size={12} className="text-[#e8b84b]" />
+          <div className="h-px w-10 bg-[#e8b84b]" />
         </div>
-        <p className="font-sans text-[10px] tracking-[0.35em] text-[#c5a059] uppercase mb-1">
+        <p className="font-sans text-[10px] tracking-[0.35em] text-[#e8b84b] uppercase mb-1">
           The Philip Touch
         </p>
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
@@ -48,9 +48,9 @@ export default function CalmMachine() {
         </p>
         <Link
           href="/"
-          className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#786858] uppercase hover:text-[#c5a059] transition-colors duration-200"
+          className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#786858] uppercase hover:text-[#e8b84b] transition-colors duration-200"
         >
-          ← Torna alla scelta
+          ← Homepage
         </Link>
       </header>
 
@@ -79,7 +79,7 @@ export default function CalmMachine() {
               w-full bg-[#211e1a] border border-[#38342e] rounded-sm
               px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
               placeholder:text-[#786858] resize-none outline-none
-              focus:border-[rgba(197,160,89,0.5)] transition-colors duration-300
+              focus:border-[rgba(232,184,75,0.5)] transition-colors duration-300
               tracking-wide
             "
           />
@@ -87,7 +87,7 @@ export default function CalmMachine() {
             onClick={handleTransform}
             disabled={isPending || !input.trim()}
             className="
-              w-full bg-[#c5a059] text-[#0a0a0a] font-sans font-semibold
+              w-full bg-[#e8b84b] text-[#0a0a0a] font-sans font-semibold
               text-xs tracking-[0.2em] uppercase px-6 py-4 rounded-sm
               hover:bg-[#d4b06a] active:bg-[#b8924d]
               disabled:opacity-40 disabled:cursor-not-allowed
@@ -105,7 +105,7 @@ export default function CalmMachine() {
         <section>
           {!result && !isPending && (
             <div className="border border-[#2e2b27] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#c5a059] opacity-25 text-3xl mb-4">❧</span>
+              <span className="text-[#e8b84b] opacity-25 text-3xl mb-4">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#686058] uppercase">
                 La versione presentabile apparirà qui
               </p>
@@ -114,7 +114,7 @@ export default function CalmMachine() {
 
           {isPending && (
             <div className="border border-[#38342e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#c5a059] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
+              <span className="text-[#e8b84b] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase animate-shimmer">
                 Addomesticando la rabbia…
               </p>
@@ -122,11 +122,11 @@ export default function CalmMachine() {
           )}
 
           {result && !isPending && (
-            <div className="relative bg-[#211e1a] border border-[rgba(197,160,89,0.5)] rounded-sm p-7 animate-fade-in-up">
-              <span className="absolute top-3 left-3 text-[#c5a059] opacity-70 text-xs">❧</span>
-              <span className="absolute top-3 right-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 left-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 right-3 text-[#c5a059] opacity-70 text-xs">❧</span>
+            <div className="relative bg-[#211e1a] border border-[rgba(232,184,75,0.5)] rounded-sm p-7 animate-fade-in-up">
+              <span className="absolute top-3 left-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
+              <span className="absolute top-3 right-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 left-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 right-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
 
               <div className="text-center mb-5 pb-4 border-b border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.4em] text-[#b8a890] uppercase">
@@ -149,15 +149,15 @@ export default function CalmMachine() {
                   onClick={handleCopy}
                   className="
                     flex items-center gap-2 font-sans text-[11px] tracking-[0.25em] uppercase
-                    text-[#b8a890] hover:text-[#c5a059] transition-colors duration-200
-                    border border-[#484848] hover:border-[#c5a059]
+                    text-[#b8a890] hover:text-[#e8b84b] transition-colors duration-200
+                    border border-[#484848] hover:border-[#e8b84b]
                     px-5 py-2.5 rounded-sm
                   "
                 >
                   {copied ? (
                     <>
-                      <Check size={11} className="text-[#c5a059]" />
-                      <span className="text-[#c5a059]">Copiato</span>
+                      <Check size={11} className="text-[#e8b84b]" />
+                      <span className="text-[#e8b84b]">Copiato</span>
                     </>
                   ) : (
                     <>
@@ -176,9 +176,9 @@ export default function CalmMachine() {
       <footer className="text-center mt-8 space-y-4">
         <Link
           href="/"
-          className="inline-block font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase hover:text-[#c5a059] transition-colors duration-200 border border-[#2e2b27] hover:border-[rgba(197,160,89,0.4)] px-5 py-2.5 rounded-sm"
+          className="inline-block font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase hover:text-[#e8b84b] transition-colors duration-200 border border-[#2e2b27] hover:border-[rgba(232,184,75,0.4)] px-5 py-2.5 rounded-sm"
         >
-          ← Torna alla scelta
+          ← Homepage
         </Link>
         <div className="flex items-center justify-center gap-3">
           <div className="h-px w-8 bg-[#2e2b27]" />

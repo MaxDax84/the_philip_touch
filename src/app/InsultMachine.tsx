@@ -41,11 +41,11 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
       {/* Header */}
       <header className="text-center mb-8">
         <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="h-px w-10 bg-[#c5a059]" />
-          <Feather size={12} className="text-[#c5a059]" />
-          <div className="h-px w-10 bg-[#c5a059]" />
+          <div className="h-px w-10 bg-[#e8b84b]" />
+          <Feather size={12} className="text-[#e8b84b]" />
+          <div className="h-px w-10 bg-[#e8b84b]" />
         </div>
-        <p className="font-sans text-[10px] tracking-[0.35em] text-[#c5a059] uppercase mb-1">
+        <p className="font-sans text-[10px] tracking-[0.35em] text-[#e8b84b] uppercase mb-1">
           The Philip Touch
         </p>
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
@@ -56,9 +56,9 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
         </p>
         <Link
           href="/"
-          className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#786858] uppercase hover:text-[#c5a059] transition-colors duration-200"
+          className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#786858] uppercase hover:text-[#e8b84b] transition-colors duration-200"
         >
-          ← Torna alla scelta
+          ← Homepage
         </Link>
       </header>
 
@@ -74,7 +74,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
             disabled={isPending}
             className="
               w-full flex items-center justify-center gap-3
-              bg-[#c5a059] text-[#0a0a0a] font-sans font-semibold
+              bg-[#e8b84b] text-[#0a0a0a] font-sans font-semibold
               text-sm tracking-[0.2em] uppercase px-6 py-5 rounded-sm
               hover:bg-[#d4b06a] active:bg-[#b8924d]
               disabled:opacity-50 disabled:cursor-not-allowed
@@ -91,12 +91,12 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
             className="flex items-center gap-3 group"
           >
             <div className="flex-1 h-px bg-[#2e2b27]" />
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#c5a059] transition-colors duration-200 whitespace-nowrap">
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#e8b84b] transition-colors duration-200 whitespace-nowrap">
               oppure personalizza
             </span>
             <ChevronDown
               size={11}
-              className={`text-[#786858] group-hover:text-[#c5a059] transition-all duration-300 ${showCustomize ? "rotate-180" : ""}`}
+              className={`text-[#786858] group-hover:text-[#e8b84b] transition-all duration-300 ${showCustomize ? "rotate-180" : ""}`}
             />
             <div className="flex-1 h-px bg-[#2e2b27]" />
           </button>
@@ -121,7 +121,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                       w-full bg-[#211e1a] border border-[#38342e] rounded-sm
                       px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
                       placeholder:text-[#786858] resize-none outline-none
-                      focus:border-[rgba(197,160,89,0.7)] transition-colors duration-300
+                      focus:border-[rgba(232,184,75,0.7)] transition-colors duration-300
                       tracking-wide
                     "
                   />
@@ -129,9 +129,9 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                     onClick={handleGenerate}
                     disabled={isPending}
                     className="
-                      w-full border border-[#c5a059] text-[#c5a059] font-sans font-semibold
+                      w-full border border-[#e8b84b] text-[#e8b84b] font-sans font-semibold
                       text-xs tracking-[0.2em] uppercase px-6 py-3.5 rounded-sm
-                      hover:bg-[#c5a059] hover:text-[#0a0a0a]
+                      hover:bg-[#e8b84b] hover:text-[#0a0a0a]
                       disabled:opacity-50 disabled:cursor-not-allowed
                       transition-all duration-200
                     "
@@ -160,7 +160,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
         <section>
           {!result && !isPending && (
             <div className="border border-[#2e2b27] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#c5a059] opacity-25 text-3xl mb-4">❧</span>
+              <span className="text-[#e8b84b] opacity-25 text-3xl mb-4">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#686058] uppercase">
                 L&apos;insulto apparirà qui
               </p>
@@ -169,7 +169,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
 
           {isPending && (
             <div className="border border-[#38342e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#c5a059] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
+              <span className="text-[#e8b84b] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase animate-shimmer">
                 Affilando il pensiero…
               </p>
@@ -177,11 +177,11 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           )}
 
           {result && !isPending && (
-            <div className="relative bg-[#211e1a] border border-[rgba(197,160,89,0.5)] rounded-sm p-7 animate-fade-in-up">
-              <span className="absolute top-3 left-3 text-[#c5a059] opacity-70 text-xs">❧</span>
-              <span className="absolute top-3 right-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 left-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 right-3 text-[#c5a059] opacity-70 text-xs">❧</span>
+            <div className="relative bg-[#211e1a] border border-[rgba(232,184,75,0.5)] rounded-sm p-7 animate-fade-in-up">
+              <span className="absolute top-3 left-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
+              <span className="absolute top-3 right-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 left-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 right-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
 
               <div className="text-center mb-5 pb-4 border-b border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.4em] text-[#b8a890] uppercase">
@@ -204,15 +204,15 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                   onClick={handleCopy}
                   className="
                     flex items-center gap-2 font-sans text-[11px] tracking-[0.25em] uppercase
-                    text-[#b8a890] hover:text-[#c5a059] transition-colors duration-200
-                    border border-[#484848] hover:border-[#c5a059]
+                    text-[#b8a890] hover:text-[#e8b84b] transition-colors duration-200
+                    border border-[#484848] hover:border-[#e8b84b]
                     px-5 py-2.5 rounded-sm
                   "
                 >
                   {copied ? (
                     <>
-                      <Check size={11} className="text-[#c5a059]" />
-                      <span className="text-[#c5a059]">Copiato</span>
+                      <Check size={11} className="text-[#e8b84b]" />
+                      <span className="text-[#e8b84b]">Copiato</span>
                     </>
                   ) : (
                     <>

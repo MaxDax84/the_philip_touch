@@ -3,11 +3,11 @@
 :root {
   --background: #1a1714;
   --foreground: #e8e0d0;
-  --gold: #c5a059;
+  --gold: #e8b84b;
   --gold-muted: #8a6f3d;
   --surface: #211e1a;
   --border: #2e2b27;
-  --border-gold: rgba(197, 160, 89, 0.25);
+  --border-gold: rgba(232, 184, 75, 0.25);
 }
 
 @theme inline {
@@ -27,8 +27,8 @@ body {
 }
 
 ::selection {
-  background: rgba(197, 160, 89, 0.2);
-  color: #c5a059;
+  background: rgba(232, 184, 75, 0.2);
+  color: #e8b84b;
 }
 
 ::-webkit-scrollbar {
