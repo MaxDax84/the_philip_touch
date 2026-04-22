@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Shuffle, Copy, Check, Feather, ChevronDown } from "lucide-react";
+import { Shuffle, Copy, Check, Feather } from "lucide-react";
 import { generateFromInput, generateRandom } from "@/app/actions/generate";
 
 export default function Home() {
@@ -9,7 +9,6 @@ export default function Home() {
   const [result, setResult] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [showCustomize, setShowCustomize] = useState(false);
 
   function handleRandom() {
     startTransition(async () => {
@@ -78,25 +77,17 @@ export default function Home() {
             {isPending ? "Elaborazione…" : "Genera insulto casuale"}
           </button>
 
-          {/* Divider — Personalizza */}
-          <button
-            onClick={() => setShowCustomize((v) => !v)}
-            className="flex items-center gap-3 group"
-          >
+          {/* Divider */}
+          <div className="flex items-center gap-3">
             <div className="flex-1 h-px bg-[#2e2b27]" />
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#c5a059] transition-colors duration-200 whitespace-nowrap">
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase whitespace-nowrap">
               oppure personalizza
             </span>
-            <ChevronDown
-              size={11}
-              className={`text-[#786858] group-hover:text-[#c5a059] transition-all duration-300 ${showCustomize ? "rotate-180" : ""}`}
-            />
             <div className="flex-1 h-px bg-[#2e2b27]" />
-          </button>
+          </div>
 
           {/* Customization panel */}
-          {showCustomize && (
-            <div className="flex flex-col gap-3 animate-fade-in-up">
+          <div className="flex flex-col gap-3">
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -132,8 +123,7 @@ export default function Home() {
               <p className="font-sans text-[10px] tracking-widest text-[#786858] uppercase text-center">
                 Invio per generare · Shift+Invio per andare a capo
               </p>
-            </div>
-          )}
+          </div>
         </section>
 
         {/* Right — Result card */}
