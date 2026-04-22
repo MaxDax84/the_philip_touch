@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Shuffle, Copy, Check, Feather, ChevronDown } from "lucide-react";
-import { generateFromInput, generateRandom } from "@/app/actions/generate";
+import { generateFromInput, generateRandom, listAvailableModels } from "@/app/actions/generate";
 
 export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
   const [input, setInput] = useState("");
@@ -10,6 +10,14 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [showCustomize, setShowCustomize] = useState(true);
+  const [modelList, setModelList] = useState<string | null>(null);
+
+  function handleListModels() {
+    startTransition(async () => {
+      const list = await listAvailableModels();
+      setModelList(list);
+    });
+  }
 
   function handleRandom() {
     startTransition(async () => {
@@ -223,6 +231,20 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           )}
         </section>
       </div>
+
+      {/* Temp diagnostic */}
+      {hasApi && (
+        <div className="mt-4 text-center">
+          <button onClick={handleListModels} className="font-sans text-[10px] text-[#786858] underline">
+            [debug] lista modelli disponibili
+          </button>
+          {modelList && (
+            <pre className="mt-2 text-left text-[10px] text-[#786858] bg-[#111] p-3 rounded overflow-auto max-h-40">
+              {modelList}
+            </pre>
+          )}
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="text-center mt-8">
