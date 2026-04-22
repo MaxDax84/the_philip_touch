@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
+  --background: #1a1714;
   --foreground: #e8e0d0;
   --gold: #c5a059;
   --gold-muted: #8a6f3d;
-  --surface: #111111;
-  --border: #1e1e1e;
+  --surface: #211e1a;
+  --border: #2e2b27;
   --border-gold: rgba(197, 160, 89, 0.25);
 }
 

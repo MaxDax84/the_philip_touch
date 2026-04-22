@@ -15,7 +15,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "The Phil Thing",
+  title: "The Philip Touch",
   description: "Insulti cinici, eleganti e sottili. Con stile.",
 };
 
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className={`${playfair.variable} ${cormorant.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-[#0a0a0a] text-[#e8e0d0] antialiased">
+      <body className="min-h-full flex flex-col bg-[#1a1714] text-[#e8e0d0] antialiased">
         {children}
       </body>
     </html>

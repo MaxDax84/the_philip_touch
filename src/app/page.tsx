@@ -44,7 +44,7 @@ export default function Home() {
           <div className="h-px w-10 bg-[#c5a059]" />
         </div>
         <p className="font-sans text-[10px] tracking-[0.35em] text-[#c5a059] uppercase mb-1">
-          The Phil Thing
+          The Philip Touch
         </p>
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
           L&apos;Arte dell&apos;Offesa Elegante
@@ -71,7 +71,7 @@ export default function Home() {
             placeholder="Descrivi la vittima o la situazione (es. collega logorroico)..."
             rows={5}
             className="
-              w-full bg-[#181818] border border-[#383838] rounded-sm
+              w-full bg-[#211e1a] border border-[#38342e] rounded-sm
               px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
               placeholder:text-[#786858] resize-none outline-none
               focus:border-[rgba(197,160,89,0.7)] transition-colors duration-300
@@ -146,7 +146,7 @@ export default function Home() {
 
           {/* Result */}
           {result && !isPending && (
-            <div className="relative bg-[#141414] border border-[rgba(197,160,89,0.5)] rounded-sm p-7 animate-fade-in-up">
+            <div className="relative bg-[#211e1a] border border-[rgba(197,160,89,0.5)] rounded-sm p-7 animate-fade-in-up">
               <span className="absolute top-3 left-3 text-[#c5a059] opacity-70 text-xs">❧</span>
               <span className="absolute top-3 right-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
               <span className="absolute bottom-3 left-3 text-[#c5a059] opacity-70 text-xs rotate-180">❧</span>
