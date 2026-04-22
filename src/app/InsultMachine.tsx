@@ -160,7 +160,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
         <section>
           {!result && !isPending && (
             <div className="border border-[#2e2b27] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#f5f0e6] opacity-25 text-3xl mb-4">❧</span>
+              <span className="text-[#e8b84b] opacity-25 text-3xl mb-4">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#686058] uppercase">
                 L&apos;insulto apparirà qui
               </p>
@@ -169,7 +169,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
 
           {isPending && (
             <div className="border border-[#38342e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#f5f0e6] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
+              <span className="text-[#e8b84b] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase animate-shimmer">
                 Affilando il pensiero…
               </p>
@@ -178,10 +178,10 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
 
           {result && !isPending && (
             <div className="relative bg-[#332e28] border border-[rgba(232,184,75,0.5)] rounded-sm p-7 animate-fade-in-up">
-              <span className="absolute top-3 left-3 text-[#f5f0e6] opacity-70 text-xs">❧</span>
-              <span className="absolute top-3 right-3 text-[#f5f0e6] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 left-3 text-[#f5f0e6] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 right-3 text-[#f5f0e6] opacity-70 text-xs">❧</span>
+              <span className="absolute top-3 left-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
+              <span className="absolute top-3 right-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 left-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 right-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
 
               <div className="text-center mb-5 pb-4 border-b border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.4em] text-[#b8a890] uppercase">

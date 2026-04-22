@@ -59,11 +59,6 @@ export default function CalmMachine() {
 
         {/* Left — Input */}
         <section className="flex flex-col gap-4">
-          <div className="border border-[#38342e] rounded-sm px-4 py-2">
-            <p className="font-sans text-[10px] tracking-[0.25em] text-[#786858] uppercase">
-              Sfogati liberamente — nessuno leggerà questo
-            </p>
-          </div>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -87,9 +82,9 @@ export default function CalmMachine() {
             onClick={handleTransform}
             disabled={isPending || !input.trim()}
             className="
-              w-full bg-[#e8b84b] text-[#0a0a0a] font-sans font-semibold
-              text-xs tracking-[0.2em] uppercase px-6 py-4 rounded-sm
-              hover:bg-[#d4b06a] active:bg-[#b8924d]
+              w-full border border-[#e8b84b] text-[#f5f0e6] font-sans font-semibold
+              text-xs tracking-[0.2em] uppercase px-6 py-3.5 rounded-sm
+              hover:bg-[#e8b84b] hover:text-[#0a0a0a]
               disabled:opacity-40 disabled:cursor-not-allowed
               transition-all duration-200
             "
@@ -105,7 +100,7 @@ export default function CalmMachine() {
         <section>
           {!result && !isPending && (
             <div className="border border-[#2e2b27] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#f5f0e6] opacity-25 text-3xl mb-4">❧</span>
+              <span className="text-[#e8b84b] opacity-25 text-3xl mb-4">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#686058] uppercase">
                 La versione presentabile apparirà qui
               </p>
@@ -114,7 +109,7 @@ export default function CalmMachine() {
 
           {isPending && (
             <div className="border border-[#38342e] rounded-sm p-8 text-center flex flex-col items-center justify-center min-h-[200px]">
-              <span className="text-[#f5f0e6] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
+              <span className="text-[#e8b84b] opacity-60 text-3xl mb-4 animate-shimmer">❧</span>
               <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase animate-shimmer">
                 Addomesticando la rabbia…
               </p>
@@ -123,10 +118,10 @@ export default function CalmMachine() {
 
           {result && !isPending && (
             <div className="relative bg-[#332e28] border border-[rgba(232,184,75,0.5)] rounded-sm p-7 animate-fade-in-up">
-              <span className="absolute top-3 left-3 text-[#f5f0e6] opacity-70 text-xs">❧</span>
-              <span className="absolute top-3 right-3 text-[#f5f0e6] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 left-3 text-[#f5f0e6] opacity-70 text-xs rotate-180">❧</span>
-              <span className="absolute bottom-3 right-3 text-[#f5f0e6] opacity-70 text-xs">❧</span>
+              <span className="absolute top-3 left-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
+              <span className="absolute top-3 right-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 left-3 text-[#e8b84b] opacity-70 text-xs rotate-180">❧</span>
+              <span className="absolute bottom-3 right-3 text-[#e8b84b] opacity-70 text-xs">❧</span>
 
               <div className="text-center mb-5 pb-4 border-b border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.4em] text-[#b8a890] uppercase">
