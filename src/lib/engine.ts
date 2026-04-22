@@ -347,7 +347,7 @@ export async function generateInsult(input: string): Promise<string> {
   }
 
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
       method: "POST",
@@ -364,16 +364,16 @@ export async function generateInsult(input: string): Promise<string> {
     });
 
     if (!response.ok) {
-      const err = await response.text();
-      return `[ERRORE ${response.status}]: ${err.slice(0, 400)}`;
+      console.error("Gemini error:", response.status, await response.text());
+      return getRandomInsult();
     }
 
     const data = await response.json();
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!text) return `[RISPOSTA VUOTA]: ${JSON.stringify(data).slice(0, 400)}`;
-    return text.trim();
+    return text?.trim() ?? getRandomInsult();
   } catch (e) {
-    return `[ECCEZIONE]: ${String(e).slice(0, 400)}`;
+    console.error("generateInsult failed:", e);
+    return getRandomInsult();
   }
 }
 
