@@ -359,19 +359,26 @@ export async function generateInsult(input: string): Promise<string> {
         generationConfig: {
           maxOutputTokens: 300,
           temperature: 0.9,
+          thinkingConfig: { thinkingBudget: 0 },
         },
       }),
     });
 
-    const rawText = await response.text();
-    if (!response.ok) return `[ERRORE ${response.status}]: ${rawText.slice(0, 400)}`;
+    if (!response.ok) {
+      console.error("Gemini error:", response.status, await response.text());
+      return getRandomInsult();
+    }
 
-    const data = JSON.parse(rawText);
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!text) return `[VUOTO]: ${JSON.stringify(data).slice(0, 400)}`;
-    return text.trim();
+    const data = await response.json();
+    const parts = data.candidates?.[0]?.content?.parts ?? [];
+    const text = parts
+      .filter((p: { thought?: boolean; text?: string }) => !p.thought && p.text)
+      .map((p: { text: string }) => p.text)
+      .join("") ;
+    return text.trim() || getRandomInsult();
   } catch (e) {
-    return `[ECCEZIONE]: ${String(e).slice(0, 400)}`;
+    console.error("generateInsult failed:", e);
+    return getRandomInsult();
   }
 }
 
