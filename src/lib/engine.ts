@@ -371,7 +371,7 @@ export async function generateInsult(input: string): Promise<string> {
     if (!response.ok) {
       const err = await response.text();
       console.error("Gemini API error:", response.status, err);
-      throw new Error(`API error ${response.status}`);
+      return `[ERRORE GEMINI ${response.status}]: ${err.slice(0, 300)}`;
     }
 
     const data = await response.json();
@@ -379,7 +379,7 @@ export async function generateInsult(input: string): Promise<string> {
     return text?.trim() ?? getRandomInsult();
   } catch (e) {
     console.error("generateInsult failed:", e);
-    return getRandomInsult();
+    return `[ERRORE]: ${String(e).slice(0, 300)}`;
   }
 }
 
