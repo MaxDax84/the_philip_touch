@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className={`${playfair.variable} ${cormorant.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-[#1a1714] text-[#e8e0d0] antialiased">
+      <body className="min-h-full flex flex-col bg-[#2a2520] text-[#e8e0d0] antialiased">
         {children}
       </body>
     </html>

@@ -118,7 +118,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
                     placeholder="Descrivi la vittima o la situazione (es. collega logorroico)..."
                     rows={4}
                     className="
-                      w-full bg-[#211e1a] border border-[#38342e] rounded-sm
+                      w-full bg-[#332e28] border border-[#38342e] rounded-sm
                       px-5 py-4 text-[#e0d8c8] font-sans text-sm leading-relaxed
                       placeholder:text-[#786858] resize-none outline-none
                       focus:border-[rgba(232,184,75,0.7)] transition-colors duration-300
@@ -177,7 +177,7 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
           )}
 
           {result && !isPending && (
-            <div className="relative bg-[#211e1a] border border-[rgba(232,184,75,0.5)] rounded-sm p-7 animate-fade-in-up">
+            <div className="relative bg-[#332e28] border border-[rgba(232,184,75,0.5)] rounded-sm p-7 animate-fade-in-up">
               <span className="absolute top-3 left-3 text-[#f5f0e6] opacity-70 text-xs">❧</span>
               <span className="absolute top-3 right-3 text-[#f5f0e6] opacity-70 text-xs rotate-180">❧</span>
               <span className="absolute bottom-3 left-3 text-[#f5f0e6] opacity-70 text-xs rotate-180">❧</span>

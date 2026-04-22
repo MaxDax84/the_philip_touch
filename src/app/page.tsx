@@ -61,20 +61,20 @@ export default function LandingPage() {
         {/* Card 2 — La Valvola */}
         <Link href="/calma" className="group block">
           <div className="
-            relative border border-[#2e2b27] rounded-sm p-10
-            bg-[#1a1714] hover:border-[rgba(232,184,75,0.4)]
-            hover:bg-[#1e1b18] transition-all duration-300
+            relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
+            bg-[#332e28] hover:border-[rgba(232,184,75,0.7)]
+            hover:bg-[#3a342d] transition-all duration-300
             flex flex-col items-center text-center gap-5 min-h-[280px] justify-center
           ">
             <div className="
-              w-14 h-14 rounded-full border border-[#2e2b27]
+              w-14 h-14 rounded-full border border-[rgba(232,184,75,0.4)]
               flex items-center justify-center
-              group-hover:border-[rgba(232,184,75,0.4)] transition-colors duration-300
+              group-hover:border-[#e8b84b] transition-colors duration-300
             ">
-              <Wind size={22} className="text-[#786858] group-hover:text-[#f5f0e6] transition-colors duration-300" />
+              <Wind size={22} className="text-[#f5f0e6]" />
             </div>
             <div>
-              <p className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase mb-2 group-hover:text-[#f5f0e6] transition-colors duration-300">
+              <p className="font-sans text-[10px] tracking-[0.3em] text-[#f5f0e6] uppercase mb-2">
                 Modalità sopravvivenza
               </p>
               <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">
@@ -84,7 +84,7 @@ export default function LandingPage() {
                 Scrivi quello che pensi davvero. Noi lo traduciamo in qualcosa che non ti costi una denuncia.
               </p>
             </div>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#b8ac9c] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
               Entra →
             </span>
           </div>
