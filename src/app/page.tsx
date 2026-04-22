@@ -12,7 +12,7 @@ export default function LandingPage() {
           <div className="w-1 h-1 rounded-full bg-[#e8b84b]" />
           <div className="h-px w-10 bg-[#e8b84b]" />
         </div>
-        <p className="font-sans text-[10px] tracking-[0.4em] text-[#e8b84b] uppercase mb-2">
+        <p className="font-sans text-[10px] tracking-[0.4em] text-[#f5f0e6] uppercase mb-2">
           The Philip Touch
         </p>
         <h1 className="font-serif text-4xl md:text-5xl font-semibold text-[#f5f0e6] leading-tight tracking-tight">
@@ -39,10 +39,10 @@ export default function LandingPage() {
               flex items-center justify-center
               group-hover:border-[#e8b84b] transition-colors duration-300
             ">
-              <Feather size={22} className="text-[#e8b84b]" />
+              <Feather size={22} className="text-[#f5f0e6]" />
             </div>
             <div>
-              <p className="font-sans text-[10px] tracking-[0.3em] text-[#e8b84b] uppercase mb-2">
+              <p className="font-sans text-[10px] tracking-[0.3em] text-[#f5f0e6] uppercase mb-2">
                 Modalità elegante
               </p>
               <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">
@@ -52,7 +52,7 @@ export default function LandingPage() {
                 Insulti cinici, raffinati e chirurgici. Colpisci l&apos;intelletto, risparmia la galera.
               </p>
             </div>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#e8b84b] transition-colors duration-300">
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
               Entra →
             </span>
           </div>
@@ -71,10 +71,10 @@ export default function LandingPage() {
               flex items-center justify-center
               group-hover:border-[rgba(232,184,75,0.4)] transition-colors duration-300
             ">
-              <Wind size={22} className="text-[#786858] group-hover:text-[#e8b84b] transition-colors duration-300" />
+              <Wind size={22} className="text-[#786858] group-hover:text-[#f5f0e6] transition-colors duration-300" />
             </div>
             <div>
-              <p className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase mb-2 group-hover:text-[#e8b84b] transition-colors duration-300">
+              <p className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase mb-2 group-hover:text-[#f5f0e6] transition-colors duration-300">
                 Modalità sopravvivenza
               </p>
               <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">
@@ -84,7 +84,7 @@ export default function LandingPage() {
                 Scrivi quello che pensi davvero. Noi lo traduciamo in qualcosa che non ti costi una denuncia.
               </p>
             </div>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#e8b84b] transition-colors duration-300">
+            <span className="font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
               Entra →
             </span>
           </div>
