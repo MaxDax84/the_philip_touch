@@ -326,7 +326,16 @@ export function getRandomInsult(): string {
 }
 
 export function buildPrompt(input: string): string {
-  return `Contesto: "${input}". Genera un insulto diretto, elegante e tagliente rivolto alla persona o alla situazione descritta. Scrivi in seconda persona singolare (tu/lei) o come osservazione diretta, senza mai ripetere o citare le parole del contesto. L'insulto deve sembrare una verità detta con distacco aristocratico — cinico, sottile, mai volgare. Una o due frasi al massimo, in italiano.`;
+  return `Situazione o persona da colpire: "${input}".
+
+Scrivi un insulto elegante, cinico e diretto che sia chiaramente ispirato da questo contesto specifico. L'insulto deve:
+- Essere in seconda persona singolare (tu/hai/sei/tua)
+- Riferirsi chiaramente alla situazione o alla persona descritta, senza citarla parola per parola
+- Colpire la contraddizione, la debolezza o l'ironia implicita nel contesto
+- Avere un tono distaccato e aristocratico, mai volgare
+- Essere di una o due frasi al massimo
+
+Rispondi solo con l'insulto, senza prefazioni o spiegazioni.`;
 }
 
 export async function generateInsult(input: string): Promise<string> {
@@ -370,18 +379,13 @@ export async function generateInsult(input: string): Promise<string> {
   }
 }
 
-function wrapInContext(_input: string): string {
+function wrapInContext(input: string): string {
   const templates = [
-    "Hai raggiunto quella rara perfezione per cui ogni sforzo di miglioramento sembrerebbe, a questo punto, una forma di ottimismo mal riposto.",
-    "La tua presenza intellettuale ricorda quella di un piattino da caffè — sufficiente per contenere qualcosa, insufficiente per impressionare chiunque.",
-    "Parli molto. Dici poco. Un'equazione che, in ambito matematico, si chiamerebbe errore di calcolo.",
-    "Non ti mancano le opinioni. Ti mancano le ragioni per averle.",
-    "Hai l'entusiasmo di chi non sa abbastanza per essere cauto — e si vede, con dolorosa chiarezza.",
-    "La tua autostima e le tue capacità reali conducono vite parallele, senza mai incontrarsi.",
-    "Ogni tua certezza è un'intuizione mai sottoposta al rigore del dubbio. Il risultato è esattamente quello che sembra.",
-    "Hai il dono di trasformare ogni conversazione in un monumento al nulla — elegante nella forma, vuoto nella sostanza.",
-    "Non è che tu sia noioso — è che la tua compagnia offre una qualità di vuoto difficilmente replicabile.",
-    "Il tuo contributo è sempre proporzionato alla tua comprensione — e questo, sfortunatamente, spiega tutto.",
+    `Ciò che descrivi con "${input}" è, nella sua essenza, la prova che alcune persone riescono a essere perfettamente coerenti con il proprio limite.`,
+    `"${input}" — una combinazione che, esaminata con la dovuta freddezza, spiega molto e giustifica poco.`,
+    `Di fronte a "${input}", la cosa più onesta che si possa dire è che hai raggiunto un equilibrio raro: quello tra apparenza e sostanza, entrambe deludenti.`,
+    `"${input}" è esattamente il tipo di situazione per cui l'ironia esiste — e tu ne sei, involontariamente, il protagonista.`,
+    `La tua descrizione di "${input}" è già, di per sé, l'insulto più preciso che potessi ricevere.`,
   ];
   return templates[Math.floor(Math.random() * templates.length)];
 }
