@@ -364,21 +364,11 @@ export async function generateInsult(input: string): Promise<string> {
       }),
     });
 
-    if (!response.ok) {
-      console.error("Gemini error:", response.status, await response.text());
-      return getRandomInsult();
-    }
-
-    const data = await response.json();
-    const parts = data.candidates?.[0]?.content?.parts ?? [];
-    const text = parts
-      .filter((p: { thought?: boolean; text?: string }) => !p.thought && p.text)
-      .map((p: { text: string }) => p.text)
-      .join("") ;
-    return text.trim() || getRandomInsult();
+    const rawText = await response.text();
+    if (!response.ok) return `[ERR ${response.status}]: ${rawText.slice(0, 500)}`;
+    return `[RAW]: ${rawText.slice(0, 800)}`;
   } catch (e) {
-    console.error("generateInsult failed:", e);
-    return getRandomInsult();
+    return `[EXC]: ${String(e)}`;
   }
 }
 
