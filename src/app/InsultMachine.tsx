@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { Shuffle, Copy, Check, Feather, ChevronDown } from "lucide-react";
+import Link from "next/link";
 import { generateFromInput, generateRandom } from "@/app/actions/generate";
 
 export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
@@ -53,6 +54,12 @@ export default function InsultMachine({ hasApi }: { hasApi: boolean }) {
         <p className="font-sans text-xs text-[#c8baa6] tracking-wide mt-2">
           Perché certe verità meritano di essere dette con stile.
         </p>
+        <Link
+          href="/"
+          className="inline-block mt-3 font-sans text-[10px] tracking-[0.25em] text-[#786858] uppercase hover:text-[#c5a059] transition-colors duration-200"
+        >
+          ← Torna alla scelta
+        </Link>
       </header>
 
       {/* Two-column layout */}

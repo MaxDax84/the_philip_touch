@@ -16,15 +16,18 @@ export async function transformRage(input: string): Promise<string> {
           parts: [{
             text: `Hai ricevuto questo sfogo privato (può contenere volgarità, insulti, rabbia): "${input}"
 
-Il tuo compito è trasformarlo in una frase gentile, pacata e diplomatica che:
-- Trasmette lo stesso senso di insoddisfazione o disappunto
-- Non contiene alcuna volgarità, insulto o aggressività
-- È adatta a essere detta ad alta voce in qualsiasi contesto pubblico o professionale
+Il tuo compito è trasformarlo in una risposta solare, leggera e disarmante che:
+- Ha un tono caldo, positivo e quasi ingenuo — come se non avessi capito la tensione
+- Può cambiare completamente argomento in modo naturale, distogliendo l'attenzione dalla situazione
+- Non contiene alcuna aggressività, disappunto o giudizio
+- È così gentile e fuori contesto da risultare disarmante
+- Può fare riferimento a qualcosa di piacevole, banale o quotidiano (il tempo, il caffè, un ricordo, una cosa bella)
 - Non può essere usata come prova di aggressione o offesa
-- Ha un tono calmo, civile, anche leggermente malinconico o rassegnato
-- È di una o due frasi al massimo
+- È di una o due frasi al massimo, in italiano
 
-Rispondi solo con la frase trasformata, niente altro.`,
+Esempi di tono: "Sai, stamattina ho visto un cane con un maglione arancione e mi ha reso la giornata." oppure "Ho appena pensato che non mangio una buona pizza da troppo tempo. Tu hai un posto preferito?"
+
+Rispondi solo con la frase, niente altro.`,
           }],
         }],
         generationConfig: {
@@ -52,11 +55,13 @@ Rispondi solo con la frase trasformata, niente altro.`,
 
 function fallback(): string {
   const phrases = [
-    "Apprezzo la tua prospettiva, anche se la mia è piuttosto diversa.",
-    "Credo che potremmo trovare un punto di incontro, con un po' di tempo e buona volontà.",
-    "Non sono del tutto d'accordo con questa situazione, ma resto aperto al dialogo.",
-    "Mi rendo conto che ci sono margini di miglioramento che entrambi potremmo considerare.",
-    "Preferisco non esprimere un giudizio definitivo in questo momento.",
+    "Sai, stamattina ho visto un cane con un maglione arancione e mi ha reso la giornata.",
+    "A proposito, hai mai assaggiato un cornetto caldo alle sei di mattina? Cambia tutto.",
+    "Mi è appena tornato in mente che non guardo un tramonto decente da mesi. Dobbiamo rimediare.",
+    "Comunque, ho sentito che il weekend arriva il sole. Già mi sento meglio.",
+    "Sai cosa non ho ancora fatto? Ordinare quella cosa che voglio da settimane. Lo faccio adesso.",
+    "Hai presente quella canzone che non riesci a toglierti dalla testa per giorni? Ecco, è successa di nuovo.",
+    "Pensavo proprio di prendermi un caffè. L'hai già preso oggi?",
   ];
   return phrases[Math.floor(Math.random() * phrases.length)];
 }

@@ -140,7 +140,7 @@ export default function CalmMachine() {
 
               <div className="text-center mt-5 pt-4 border-t border-[#303030]">
                 <p className="font-sans text-[11px] tracking-[0.3em] text-[#a09080] uppercase">
-                  inattaccabile e legalmente sicura
+                  detto con il sorriso
                 </p>
               </div>
 
@@ -173,8 +173,14 @@ export default function CalmMachine() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center mt-8">
-        <div className="flex items-center justify-center gap-3 mb-2">
+      <footer className="text-center mt-8 space-y-4">
+        <Link
+          href="/"
+          className="inline-block font-sans text-[10px] tracking-[0.3em] text-[#786858] uppercase hover:text-[#c5a059] transition-colors duration-200 border border-[#2e2b27] hover:border-[rgba(197,160,89,0.4)] px-5 py-2.5 rounded-sm"
+        >
+          ← Torna alla scelta
+        </Link>
+        <div className="flex items-center justify-center gap-3">
           <div className="h-px w-8 bg-[#2e2b27]" />
           <div className="w-1 h-1 rounded-full bg-[#3a3530]" />
           <div className="h-px w-8 bg-[#2e2b27]" />
