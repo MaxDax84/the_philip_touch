@@ -16,16 +16,13 @@ export async function transformRage(input: string): Promise<string> {
           parts: [{
             text: `Hai ricevuto questo sfogo privato (può contenere volgarità, insulti, rabbia): "${input}"
 
-Il tuo compito è trasformarlo in una risposta solare, leggera e disarmante che:
-- Ha un tono caldo, positivo e quasi ingenuo — come se non avessi capito la tensione
-- Può cambiare completamente argomento in modo naturale, distogliendo l'attenzione dalla situazione
-- Non contiene alcuna aggressività, disappunto o giudizio
-- È così gentile e fuori contesto da risultare disarmante
-- Può fare riferimento a qualcosa di piacevole, banale o quotidiano (il tempo, il caffè, un ricordo, una cosa bella)
-- Non può essere usata come prova di aggressione o offesa
-- È di una o due frasi al massimo, in italiano
-
-Esempi di tono: "Sai, stamattina ho visto un cane con un maglione arancione e mi ha reso la giornata." oppure "Ho appena pensato che non mangio una buona pizza da troppo tempo. Tu hai un posto preferito?"
+Il tuo compito è trasformarlo in una frase che:
+- Sia pertinente alla situazione o alla persona descritta — non cambiare argomento
+- Abbia un tono positivo, proattivo e di apertura — come se vedessi un'opportunità dove altri vedono un problema
+- Non contenga aggressività, giudizio o sarcasmo
+- Suggerisca un passo avanti, una prospettiva costruttiva o una possibilità concreta
+- Sia adatta a essere detta ad alta voce in qualsiasi contesto senza conseguenze
+- Sia di una o due frasi al massimo, in italiano
 
 Rispondi solo con la frase, niente altro.`,
           }],
@@ -55,13 +52,11 @@ Rispondi solo con la frase, niente altro.`,
 
 function fallback(): string {
   const phrases = [
-    "Sai, stamattina ho visto un cane con un maglione arancione e mi ha reso la giornata.",
-    "A proposito, hai mai assaggiato un cornetto caldo alle sei di mattina? Cambia tutto.",
-    "Mi è appena tornato in mente che non guardo un tramonto decente da mesi. Dobbiamo rimediare.",
-    "Comunque, ho sentito che il weekend arriva il sole. Già mi sento meglio.",
-    "Sai cosa non ho ancora fatto? Ordinare quella cosa che voglio da settimane. Lo faccio adesso.",
-    "Hai presente quella canzone che non riesci a toglierti dalla testa per giorni? Ecco, è successa di nuovo.",
-    "Pensavo proprio di prendermi un caffè. L'hai già preso oggi?",
+    "Forse c'è un modo per trasformare questa situazione in qualcosa di utile — a volte le difficoltà aprono porte inaspettate.",
+    "Capisco la frustrazione, e sono sicuro che troveremo un punto di incontro se ci proviamo insieme.",
+    "Magari vale la pena fermarsi un momento e vedere se c'è qualcosa di positivo da cui ripartire.",
+    "Sono convinto che con un po' di dialogo aperto si possano trovare soluzioni migliori di quanto sembri adesso.",
+    "È una situazione complicata, ma credo ci siano margini reali per migliorarla — partiamo da lì.",
   ];
   return phrases[Math.floor(Math.random() * phrases.length)];
 }
