@@ -123,6 +123,17 @@ export default function LandingPage() {
         <p className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase">
           {tr.footer}
         </p>
+        <p className="font-sans text-[10px] text-[#6b6560] mt-2">
+          Site by{" "}
+          <a
+            href="https://www.massimodassano.it"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-[#b0a898] transition-colors"
+          >
+            Massimo Dassano
+          </a>
+        </p>
       </footer>
 
     </main>
