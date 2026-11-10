@@ -1,13 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { Feather, Wind } from "lucide-react";
+import { Feather, Wind, Briefcase, Mail } from "lucide-react";
 import { useLanguage } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
 export default function LandingPage() {
   const { lang, toggleLang } = useLanguage();
   const tr = t[lang];
+
+  const cards = [
+    { href: "/touch", Icon: Feather, mode: tr.card1mode, title: tr.card1title, desc: tr.card1desc },
+    { href: "/calma", Icon: Wind, mode: tr.card2mode, title: tr.card2title, desc: tr.card2desc },
+    { href: "/scuse", Icon: Briefcase, mode: tr.card3mode, title: tr.card3title, desc: tr.card3desc },
+    { href: "/mail", Icon: Mail, mode: tr.card4mode, title: tr.card4title, desc: tr.card4desc },
+  ];
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen px-6 py-12 relative">
@@ -45,72 +52,36 @@ export default function LandingPage() {
         </p>
       </header>
 
-      {/* Two big cards */}
+      {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
-
-        {/* Card 1 — The Elegant Insult */}
-        <Link href="/touch" className="group block">
-          <div className="
-            relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
-            bg-[#332e28] hover:border-[rgba(232,184,75,0.7)]
-            hover:bg-[#3a342d] transition-all duration-300
-            flex flex-col items-center text-center gap-5 min-h-[280px] justify-center
-          ">
+        {cards.map(({ href, Icon, mode, title, desc }) => (
+          <Link key={href} href={href} className="group block">
             <div className="
-              w-14 h-14 rounded-full border border-[rgba(232,184,75,0.4)]
-              flex items-center justify-center
-              group-hover:border-[#e8b84b] transition-colors duration-300
+              relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
+              bg-[#332e28] hover:border-[rgba(232,184,75,0.7)]
+              hover:bg-[#3a342d] transition-all duration-300
+              flex flex-col items-center text-center gap-5 min-h-[280px] justify-center h-full
             ">
-              <Feather size={22} className="text-[#f5f0e6]" />
+              <div className="
+                w-14 h-14 rounded-full border border-[rgba(232,184,75,0.4)]
+                flex items-center justify-center
+                group-hover:border-[#e8b84b] transition-colors duration-300
+              ">
+                <Icon size={22} className="text-[#f5f0e6]" />
+              </div>
+              <div>
+                <p className="font-sans text-[10px] tracking-[0.3em] text-[#f5f0e6] uppercase mb-2">
+                  {mode}
+                </p>
+                <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">{title}</h2>
+                <p className="font-sans text-xs text-[#d8d2c8] leading-relaxed">{desc}</p>
+              </div>
+              <span className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
+                {tr.enter}
+              </span>
             </div>
-            <div>
-              <p className="font-sans text-[10px] tracking-[0.3em] text-[#f5f0e6] uppercase mb-2">
-                {tr.card1mode}
-              </p>
-              <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">
-                {tr.card1title}
-              </h2>
-              <p className="font-sans text-xs text-[#d8d2c8] leading-relaxed">
-                {tr.card1desc}
-              </p>
-            </div>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
-              {tr.enter}
-            </span>
-          </div>
-        </Link>
-
-        {/* Card 2 — The Safety Valve */}
-        <Link href="/calma" className="group block">
-          <div className="
-            relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
-            bg-[#332e28] hover:border-[rgba(232,184,75,0.7)]
-            hover:bg-[#3a342d] transition-all duration-300
-            flex flex-col items-center text-center gap-5 min-h-[280px] justify-center
-          ">
-            <div className="
-              w-14 h-14 rounded-full border border-[rgba(232,184,75,0.4)]
-              flex items-center justify-center
-              group-hover:border-[#e8b84b] transition-colors duration-300
-            ">
-              <Wind size={22} className="text-[#f5f0e6]" />
-            </div>
-            <div>
-              <p className="font-sans text-[10px] tracking-[0.3em] text-[#f5f0e6] uppercase mb-2">
-                {tr.card2mode}
-              </p>
-              <h2 className="font-serif text-2xl text-[#f5f0e6] mb-3">
-                {tr.card2title}
-              </h2>
-              <p className="font-sans text-xs text-[#d8d2c8] leading-relaxed">
-                {tr.card2desc}
-              </p>
-            </div>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase group-hover:text-[#f5f0e6] transition-colors duration-300">
-              {tr.enter}
-            </span>
-          </div>
-        </Link>
+          </Link>
+        ))}
       </div>
 
       {/* Footer */}
