@@ -8,11 +8,37 @@ function pick<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// ---------- Scuse aziendali (4 x 5 x 8 x 5 = 800 combinazioni per lingua) ----------
+// Quante estrazioni successive devono passare prima che una frase possa ricomparire.
+const NO_REPEAT = 10;
+const recent: Record<string, number[]> = {};
+
+// Come pick, ma esclude le frasi uscite nelle ultime NO_REPEAT estrazioni della stessa lista.
+function pickFresh(key: string, arr: readonly string[]): string {
+  const memory = Math.min(NO_REPEAT, arr.length - 1);
+  const used = (recent[key] ??= []);
+  const free = arr.map((_, i) => i).filter((i) => !used.includes(i));
+  const i = free[Math.floor(Math.random() * free.length)];
+  used.push(i);
+  while (used.length > memory) used.shift();
+  return arr[i];
+}
+
+// ---------- Scuse aziendali (16 x 16 x 16 x 16 = 65.536 combinazioni per lingua) ----------
+// Nessuna frase si ripete nelle 10 scuse successive (la memoria dura finché la pagina resta aperta).
 
 const EXCUSE_OPEN: Pools = {
-  it: ["Gentili colleghi,", "Buongiorno a tutti,", "Ciao team,", "Gentile team,"],
-  en: ["Dear colleagues,", "Good morning all,", "Hi team,", "Dear team,"],
+  it: [
+    "Gentili colleghi,", "Buongiorno a tutti,", "Ciao team,", "Gentile team,",
+    "Cari colleghi,", "Salve a tutti,", "Egregi colleghi,", "Care colleghe e cari colleghi,",
+    "Buon lunedì a tutti,", "Ciao a tutti,", "Gentile gruppo,",
+    "Buon inizio settimana a tutti,", "Carissimi,", "Gentilissimi colleghi,", "Spettabile team,", "Salve team,",
+  ],
+  en: [
+    "Dear colleagues,", "Good morning all,", "Hi team,", "Dear team,",
+    "Hello everyone,", "Dear all,", "Hi all,", "Colleagues,",
+    "Good Monday morning,", "Dear friends and colleagues,", "Greetings team,",
+    "Happy Monday everyone,", "Dear teammates,", "Esteemed colleagues,", "Hello team,", "Dear colleagues and teammates,",
+  ],
 };
 
 const EXCUSE_ACTION: Pools = {
@@ -22,6 +48,17 @@ const EXCUSE_ACTION: Pools = {
     "Non sarò disponibile per la call delle 9:00",
     "Dovrò declinare, mio malgrado, l’invito al weekly",
     "Non riuscirò a unirmi al kickoff di inizio settimana",
+    "Non potrò essere presente al brainstorming di inizio settimana",
+    "Dovrò rinunciare alla riunione di allineamento delle 10:00",
+    "Sarò purtroppo assente al meeting di coordinamento",
+    "Non riuscirò a collegarmi alla call di lunedì",
+    "Dovrò mancare all’incontro di pianificazione settimanale",
+    "Non potrò prendere parte allo stand-up di domani mattina",
+    "Mi vedo costretto a saltare il consueto momento di sincronizzazione",
+    "Non potrò unirmi alla sessione di allineamento di inizio settimana",
+    "Purtroppo dovrò disertare la riunione operativa del lunedì",
+    "Non sarò presente al check-in programmato per domani",
+    "Dovrò assentarmi dal confronto settimanale con il gruppo",
   ],
   en: [
     "Unfortunately I won’t be able to attend Monday morning’s meeting",
@@ -29,6 +66,17 @@ const EXCUSE_ACTION: Pools = {
     "I will not be available for the 9:00 call",
     "I must regretfully decline the invitation to the weekly",
     "I will not be able to join the start-of-week kickoff",
+    "I won’t be able to be present at the start-of-week brainstorming",
+    "I will have to give up the 10:00 alignment meeting",
+    "I will unfortunately be absent from the coordination meeting",
+    "I won’t manage to join Monday’s call",
+    "I will have to miss the weekly planning session",
+    "I will not be able to take part in tomorrow morning’s stand-up",
+    "I am forced to skip the usual synchronisation moment",
+    "I won’t be able to join the start-of-week alignment session",
+    "I will unfortunately have to miss Monday’s operational meeting",
+    "I will not be present at tomorrow’s scheduled check-in",
+    "I will have to be absent from the weekly team discussion",
   ],
 };
 
@@ -42,6 +90,14 @@ const EXCUSE_CAUSE: Pools = {
     "dovendo presidiare un filone progettuale in fase di forte accelerazione",
     "per il sopraggiungere di una scadenza interna che richiede la massima focalizzazione",
     "dovendo gestire una criticità emersa durante la revisione dei processi",
+    "avendo in corso una verifica di fattibilità che non ammette interruzioni",
+    "visto un impegno improvviso su un tavolo di lavoro a carattere strategico",
+    "essendo impegnato nella chiusura di un deliverable ad alta sensibilità",
+    "per un’esigenza di presidio su un fronte operativo che non ammette deleghe",
+    "in virtù di un confronto trasversale già calendarizzato in sovrapposizione",
+    "a seguito di una richiesta di supporto proveniente da un’altra business unit",
+    "dovendo sciogliere un nodo organizzativo che blocca più filiere",
+    "per dare continuità a un’attività sensibile già avviata questa mattina",
   ],
   en: [
     "due to a critical overlap with a high-impact cross-functional activity",
@@ -52,6 +108,14 @@ const EXCUSE_CAUSE: Pools = {
     "as I need to oversee a workstream in a phase of strong acceleration",
     "owing to an internal deadline that demands maximum focus",
     "as I must handle a critical issue that emerged during the process review",
+    "as I have a feasibility check under way that allows no interruptions",
+    "given a sudden commitment at a strategic working table",
+    "being engaged in closing a highly sensitive deliverable",
+    "owing to a need to oversee an operational front that allows no delegation",
+    "by virtue of a cross-team discussion already scheduled at the same time",
+    "following a request for support from another business unit",
+    "as I must untangle an organisational knot blocking several workstreams",
+    "in order to ensure continuity on a sensitive activity already started this morning",
   ],
 };
 
@@ -62,6 +126,17 @@ const EXCUSE_CLOSE: Pools = {
     "Resto a disposizione per un eventuale follow-up asincrono.",
     "Il mio contributo, se necessario, può essere considerato implicito.",
     "Sono certo che il gruppo saprà procedere con la consueta efficacia anche senza di me.",
+    "Chiedo scusa per l’inconveniente e confido nella vostra comprensione.",
+    "Vi invito a procedere con l’ordine del giorno senza attendermi.",
+    "Mi riservo di recuperare i punti principali con un confronto individuale.",
+    "Resto raggiungibile per le sole questioni non rinviabili.",
+    "Se emergono decisioni che mi riguardano, sono certo che mi saranno comunicate.",
+    "Grazie per la flessibilità, che apprezzo sempre molto.",
+    "Condividerò volentieri il mio punto di vista in forma scritta.",
+    "Ogni aggiornamento rilevante potrà essere condiviso nei canali del team.",
+    "Vi ringrazio fin da ora per l’attenzione e per la collaborazione.",
+    "Sarò ben lieto di recuperare non appena la situazione lo consentirà.",
+    "Fino ad allora, il mio pensiero è con voi.",
   ],
   en: [
     "I will catch up offline as soon as possible.",
@@ -69,11 +144,27 @@ const EXCUSE_CLOSE: Pools = {
     "I remain available for an asynchronous follow-up.",
     "My contribution, if needed, may be considered implicit.",
     "I am sure the group will proceed with its usual effectiveness even without me.",
+    "I apologise for the inconvenience and trust in your understanding.",
+    "I invite you to proceed with the agenda without waiting for me.",
+    "I reserve the right to catch up on the key points in a one-to-one chat.",
+    "I remain reachable only for matters that cannot be postponed.",
+    "If any decisions concern me, I am sure they will be communicated to me.",
+    "Thank you for your flexibility, which I always appreciate.",
+    "I will gladly share my point of view in writing.",
+    "Any relevant update can be shared in the team channels.",
+    "Thank you in advance for your attention and cooperation.",
+    "I will be glad to catch up as soon as the situation allows.",
+    "Until then, my thoughts are with you.",
   ],
 };
 
 export function generateExcuse(lang: Lang): string {
-  return `${pick(EXCUSE_OPEN[lang])} ${pick(EXCUSE_ACTION[lang])} ${pick(EXCUSE_CAUSE[lang])}. ${pick(EXCUSE_CLOSE[lang])}`;
+  const k = (part: string) => `excuse-${part}-${lang}`;
+  return [
+    pickFresh(k("open"), EXCUSE_OPEN[lang]),
+    pickFresh(k("action"), EXCUSE_ACTION[lang]),
+    `${pickFresh(k("cause"), EXCUSE_CAUSE[lang])}. ${pickFresh(k("close"), EXCUSE_CLOSE[lang])}`,
+  ].join(" ");
 }
 
 // ---------- Email passivo-aggressive (13 situazioni, 81 combinazioni ciascuna per lingua) ----------
