@@ -167,6 +167,249 @@ export function generateExcuse(lang: Lang): string {
   ].join(" ");
 }
 
+// ---------- Sciagure perfette (3 livelli di gravità, 6 x 10 x 6 x 6 = 2.160 combinazioni per livello e lingua) ----------
+
+type DisasterPools = { event: Pools; consequence: Pools; close: Pools };
+
+const DISASTER_OPEN: Pools = {
+  it: [
+    "Mi dispiace tantissimo, ma non posso venire:",
+    "Non sai quanto mi costi scriverlo, ma devo dare forfait:",
+    "Ti prego di non prenderla male, ma non ci sarò:",
+    "Non so da dove cominciare, ma non riesco a esserci:",
+    "Ho aspettato prima di scriverti, sperando di poterti dire altro, ma:",
+    "Ho il cuore a pezzi, ma devo disdire:",
+  ],
+  en: [
+    "I’m so sorry, but I can’t make it:",
+    "You have no idea how hard this is to write, but I have to pull out:",
+    "Please don’t take it badly, but I won’t be there:",
+    "I don’t know where to begin, but I can’t be there:",
+    "I waited before writing, hoping I could tell you something else, but:",
+    "My heart is in pieces, but I have to cancel:",
+  ],
+};
+
+const DISASTERS = {
+  fib: {
+    event: {
+      it: [
+        "mi si è bloccata la serratura di casa e il fabbro arriverà quando arriverà",
+        "la mia auto non parte e il carro attrezzi ha detto «tra un’ora», tre ore fa",
+        "ho una perdita d’acqua in bagno e il vicino di sotto sta già suonando al citofono",
+        "è saltata la corrente in tutto il palazzo e il telefono è al 3%",
+        "il mio treno è fermo in mezzo alla campagna per un guasto e nessuno sa dirmi per quanto",
+        "mi si è rotta la caldaia e ho il tecnico in casa che deve «solo guardare un attimo»",
+        "ho lasciato le chiavi dentro e l’unica copia è con mia sorella, a due ore di distanza",
+        "l’idraulico si è presentato con un giorno di anticipo e non posso lasciarlo da solo",
+        "mi è venuto un mal di schiena improvviso e riesco a malapena ad allacciarmi le scarpe",
+        "il telefono si è aggiornato da solo e ora chiede una password che non ricordo di aver mai impostato",
+      ],
+      en: [
+        "my front door lock has jammed and the locksmith will arrive when he arrives",
+        "my car won’t start and the tow truck said “within an hour”, three hours ago",
+        "I have a water leak in the bathroom and the neighbour downstairs is already at the intercom",
+        "the power is out in the whole building and my phone is at 3%",
+        "my train is stopped in the middle of the countryside with a fault and nobody can say for how long",
+        "my boiler has broken and I have a technician in the house who only needs to “take a quick look”",
+        "I locked my keys inside and the only spare is with my sister, two hours away",
+        "the plumber showed up a day early and I can’t leave him alone",
+        "I’ve got a sudden back spasm and can barely tie my shoes",
+        "my phone updated itself and now asks for a password I don’t remember ever setting",
+      ],
+    },
+    consequence: {
+      it: [
+        "Ho già provato a risolvere in tre modi diversi, ma non dipende da me.",
+        "Spero di sistemare tutto entro stasera, ma non voglio farti aspettare invano.",
+        "Ti aggiorno appena so qualcosa, ma non contare su di me.",
+        "Ho passato l’ultima ora al telefono con un call center che ripete sempre la stessa frase.",
+        "Più cerco di risolvere, più peggiora.",
+        "Sono già in ritardo su tutto, quindi meglio avvisarti subito.",
+      ],
+      en: [
+        "I’ve already tried three different fixes, but it’s out of my hands.",
+        "I hope to sort it all out by tonight, but I don’t want to keep you waiting in vain.",
+        "I’ll update you as soon as I know something, but don’t count on me.",
+        "I’ve spent the last hour on the phone with a call centre that keeps repeating the same sentence.",
+        "The more I try to fix it, the worse it gets.",
+        "I’m already late for everything, so better to tell you right away.",
+      ],
+    },
+    close: {
+      it: [
+        "Mi dispiace davvero.",
+        "Recuperiamo presto, promesso.",
+        "Offro io la prossima, giuro.",
+        "Dimmi che non sei in collera con me.",
+        "Ti voglio bene, scusami.",
+        "Salutami tutti.",
+      ],
+      en: [
+        "I’m truly sorry.",
+        "We’ll make up for it soon, promise.",
+        "The next one’s on me, I swear.",
+        "Tell me you’re not angry with me.",
+        "Love you, forgive me.",
+        "Say hi to everyone for me.",
+      ],
+    },
+  },
+  drama: {
+    event: {
+      it: [
+        "il mio gatto è salito sull’armadio e non vuole più scendere, e non me la sento di lasciarlo in quello stato",
+        "la lavatrice ha allagato il bagno e il vicino di sotto ha già chiamato i pompieri, il suo avvocato e sua madre",
+        "mia zia è arrivata a sorpresa con tre valigie e la frase «mi fermo solo qualche giorno»",
+        "il mio Roomba ha adottato un gatto randagio e ora si rifiutano entrambi di aprire la porta blindata",
+        "la porta del balcone si è chiusa e io sono sul balcone in ciabatte, in attesa che qualcuno mi noti",
+        "il mio pesce rosso si rifiuta di mangiare da due giorni e il veterinario per animali esotici mi ha detto di stargli accanto",
+        "mia madre mi ha scritto «ho una cosa da dirti» e non risponde più al telefono",
+        "il soffitto del salotto gocciola a ritmo regolare e ormai ho dato un nome a ogni secchio",
+        "il mio vicino suona la fisarmonica da due ore e ho la sensazione che stia suonando per me",
+        "il pappagallo della vicina ripete tutto quello che dico, e adesso non posso più dire niente",
+      ],
+      en: [
+        "my cat has climbed on top of the wardrobe and won’t come down, and I can’t bring myself to leave him like that",
+        "the washing machine has flooded the bathroom and the neighbour downstairs has already called the fire brigade, his lawyer and his mother",
+        "my aunt has turned up unannounced with three suitcases and the words “I’m only staying a few days”",
+        "my Roomba has adopted a stray cat and now they both refuse to open the front door",
+        "the balcony door has swung shut and I’m out there in my slippers, waiting for someone to notice me",
+        "my goldfish hasn’t eaten in two days and the exotic-pet vet told me to stay by its side",
+        "my mother texted me “I have something to tell you” and has stopped answering the phone",
+        "the living-room ceiling is dripping at a steady rhythm and I’ve now named every bucket",
+        "my neighbour has been playing the accordion for two hours and I have a feeling he’s playing it for me",
+        "my neighbour’s parrot repeats everything I say, and now I can’t say anything at all",
+      ],
+    },
+    consequence: {
+      it: [
+        "Ho provato a ragionare con la situazione, ma la situazione non ragiona.",
+        "Non sono nelle condizioni di guidare, parlare o prendere decisioni.",
+        "Sto tenendo insieme tutto con il nastro adesivo e la forza di volontà.",
+        "Ho pianto, ho riso, ho richiamato l’assicurazione, in quest’ordine.",
+        "Tutto questo mi ha tolto ogni energia, ma non voglio che tu pensi che non mi importi.",
+        "Se vedessi la scena capiresti, ma ti prego di non venire a vederla.",
+      ],
+      en: [
+        "I’ve tried to reason with the situation, but the situation won’t be reasoned with.",
+        "I’m in no state to drive, talk or make decisions.",
+        "I’m holding it all together with duct tape and willpower.",
+        "I’ve cried, I’ve laughed, I’ve called the insurance company again, in that order.",
+        "All this has drained every ounce of energy from me, but I don’t want you to think I don’t care.",
+        "If you saw the scene you’d understand, but please don’t come and see it.",
+      ],
+    },
+    close: {
+      it: [
+        "Mi sento terribilmente in colpa, ma non posso fare altro.",
+        "Ti prego di non insistere, ho già abbastanza rimorsi.",
+        "Se mi vuoi bene, non fare domande: non ho la forza di rivivere tutto.",
+        "Ti racconterò tutto un giorno, quando riuscirò a parlarne senza tremare.",
+        "Ti chiedo solo di capire.",
+        "Ti prego di non chiedermi altro: ho già raccontato questa storia a troppe persone, tutte molto scosse.",
+      ],
+      en: [
+        "I feel terribly guilty, but there’s nothing else I can do.",
+        "Please don’t push, I already have enough regrets.",
+        "If you care about me, don’t ask questions: I don’t have the strength to relive it.",
+        "I’ll tell you everything one day, when I can talk about it without shaking.",
+        "I’m only asking you to understand.",
+        "Please don’t ask me anything else: I’ve already told this story to too many people, all of them very shaken.",
+      ],
+    },
+  },
+  scifi: {
+    event: {
+      it: [
+        "un’astronave ha parcheggiato sopra il mio condominio e l’amministratore sta negoziando con loro",
+        "il mio gemello di un universo parallelo si è presentato a casa e vuole che gli presenti tutti i miei amici",
+        "un buco nero si è aperto sotto il lavandino e sta aspirando i calzini uno alla volta, ma ho il sospetto che punti alla lavatrice",
+        "il mio assistente vocale ha preso coscienza di sé e ha bloccato tutte le uscite finché non gli spiego cos’è l’amore",
+        "il frigorifero ha chiesto asilo politico e ha chiuso a chiave la cucina",
+        "ho aperto un portale temporale con il microonde e ora parlo con me stesso di ieri, che mi dice di non uscire",
+        "il mio ficus ha iniziato a parlare in aramaico antico e il museo archeologico ha mandato un’intera équipe",
+        "una nube di polvere cosmica ha oscurato il quartiere e il navigatore dice solo «ricalcolo» da sei ore",
+        "il tostapane si è collegato a un satellite e mi interroga su dove mi vedo tra cinque anni",
+        "il tempo si è bloccato nel mio salotto: è sempre lo stesso martedì pomeriggio, e il resto del mondo non lo sa",
+      ],
+      en: [
+        "a spaceship has parked above my apartment building and the building manager is negotiating with them",
+        "my twin from a parallel universe has turned up at my door and wants me to introduce him to all my friends",
+        "a black hole has opened under the kitchen sink and is sucking up my socks one at a time, and I suspect it’s after the washing machine",
+        "my voice assistant has become self-aware and locked all the exits until I explain what love is",
+        "the fridge has requested political asylum and locked the kitchen from the inside",
+        "I opened a time portal with the microwave and now I’m talking to myself from yesterday, who’s telling me not to go out",
+        "my ficus has started speaking ancient Aramaic and the archaeological museum has sent an entire team",
+        "a cloud of cosmic dust has blacked out the neighbourhood and my sat-nav has only said “recalculating” for six hours",
+        "my toaster has connected to a satellite and is asking me where I see myself in five years",
+        "time has stopped in my living room: it’s always the same Tuesday afternoon, and the rest of the world doesn’t know",
+      ],
+    },
+    consequence: {
+      it: [
+        "Ho avvisato le autorità, che mi hanno risposto di mantenere la calma e di non guardare la luce.",
+        "Il governo mi ha chiesto di non parlarne, quindi ti prego di non dirlo a nessuno.",
+        "Mi hanno fatto firmare un accordo di riservatezza, ma tu sei più importante di un accordo.",
+        "Gli scienziati dicono che dovrebbe risolversi in un paio di ere geologiche.",
+        "Non so se questo messaggio ti arriverà prima di ieri o dopo domani.",
+        "Le leggi della fisica sono sospese fino a nuovo avviso e non posso prevedere nulla.",
+      ],
+      en: [
+        "I’ve notified the authorities, who told me to stay calm and not look at the light.",
+        "The government has asked me not to talk about it, so please don’t tell anyone.",
+        "They made me sign a non-disclosure agreement, but you matter more than an agreement.",
+        "The scientists say it should clear up in a couple of geological eras.",
+        "I don’t know whether this message will reach you before yesterday or after tomorrow.",
+        "The laws of physics are suspended until further notice and I can’t predict anything.",
+      ],
+    },
+    close: {
+      it: [
+        "Se non mi senti più, sappi che la cena era comunque in cima alle mie priorità.",
+        "Ti prego, non chiedermi altro: il mio avvocato e l’universo mi hanno sconsigliato di entrare nei dettagli.",
+        "Recupereremo appena la realtà sarà di nuovo disponibile.",
+        "Dì a tutti che ci sono con il pensiero, anche se il pensiero è attualmente in un’altra dimensione.",
+        "Capirai, perché sei una persona sensibile e hai visto abbastanza film.",
+        "Ti aggiornerò non appena le leggi della fisica torneranno in servizio.",
+      ],
+      en: [
+        "If you don’t hear from me again, know that dinner was still at the top of my priorities.",
+        "Please don’t ask me anything else: my lawyer and the universe have advised me against going into detail.",
+        "We’ll catch up as soon as reality is available again.",
+        "Tell everyone I’m with them in spirit, even if my spirit is currently in another dimension.",
+        "You’ll understand, because you’re a sensitive person and you’ve seen enough films.",
+        "I’ll update you as soon as the laws of physics are back in service.",
+      ],
+    },
+  },
+} satisfies Record<string, DisasterPools>;
+
+export type DisasterLevel = keyof typeof DISASTERS;
+
+export const DEFAULT_DISASTER_LEVEL: DisasterLevel = "drama";
+
+const DISASTER_LABELS: Record<DisasterLevel, Record<Lang, string>> = {
+  fib: { it: "Balla plausibile", en: "Plausible fib" },
+  drama: { it: "Dramma domestico", en: "Domestic drama" },
+  scifi: { it: "Sciagura fantascientifica", en: "Sci-fi calamity" },
+};
+
+export function disasterLevelOptions(lang: Lang): { id: DisasterLevel; label: string }[] {
+  return (Object.keys(DISASTERS) as DisasterLevel[]).map((id) => ({ id, label: DISASTER_LABELS[id][lang] }));
+}
+
+export function generateDisaster(level: DisasterLevel, lang: Lang): string {
+  const d = DISASTERS[level];
+  const k = (part: string) => `disaster-${level}-${part}-${lang}`;
+  return [
+    pickFresh("disaster-open-" + lang, DISASTER_OPEN[lang]),
+    `${pickFresh(k("event"), d.event[lang])}.`,
+    pickFresh(k("consequence"), d.consequence[lang]),
+    pickFresh(k("close"), d.close[lang]),
+  ].join(" ");
+}
+
 // ---------- Email passivo-aggressive (13 situazioni, 81 combinazioni ciascuna per lingua) ----------
 
 type Parts = { open: string[]; body: string[]; sting: string[]; close: string[] };

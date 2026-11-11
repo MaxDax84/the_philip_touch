@@ -1,30 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check, Briefcase, Mail } from "lucide-react";
+import { Copy, Check, Briefcase, Mail, CloudLightning } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 import {
   generateExcuse,
   generateMail,
+  generateDisaster,
   mailScenarioOptions,
+  disasterLevelOptions,
   DEFAULT_MAIL_SCENARIO,
+  DEFAULT_DISASTER_LEVEL,
   type MailScenario,
+  type DisasterLevel,
 } from "@/lib/office";
 
-export default function OfficeMachine({ mode }: { mode: "excuse" | "mail" }) {
+export default function OfficeMachine({ mode }: { mode: "excuse" | "mail" | "disaster" }) {
   const [result, setResult] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [scenario, setScenario] = useState<MailScenario>(DEFAULT_MAIL_SCENARIO);
+  const [level, setLevel] = useState<DisasterLevel>(DEFAULT_DISASTER_LEVEL);
   const [name, setName] = useState("");
   const { lang, toggleLang } = useLanguage();
   const tr = t[lang];
   const isMail = mode === "mail";
-  const Icon = isMail ? Mail : Briefcase;
+  const isDisaster = mode === "disaster";
+  const Icon = isMail ? Mail : isDisaster ? CloudLightning : Briefcase;
 
   function handleGenerate() {
-    setResult(isMail ? generateMail(scenario, name, lang) : generateExcuse(lang));
+    setResult(
+      isMail ? generateMail(scenario, name, lang) : isDisaster ? generateDisaster(level, lang) : generateExcuse(lang),
+    );
     setCopied(false);
   }
 
@@ -35,14 +43,14 @@ export default function OfficeMachine({ mode }: { mode: "excuse" | "mail" }) {
     setTimeout(() => setCopied(false), 2500);
   }
 
-  const title = isMail ? tr.mailTitle : tr.excuseTitle;
-  const subtitle = isMail ? tr.mailSubtitle : tr.excuseSubtitle;
-  const btn = result ? (isMail ? tr.mailAgain : tr.excuseAgain) : isMail ? tr.mailBtn : tr.excuseBtn;
-  const empty = isMail ? tr.mailEmpty : tr.excuseEmpty;
-  const header = isMail ? tr.mailHeader : tr.excuseHeader;
-  const footer = isMail ? tr.mailFooter : tr.excuseFooter;
-  const copyLabel = isMail ? tr.mailCopy : tr.excuseCopy;
-  const copyFooter = isMail ? tr.mailCopyFooter : tr.excuseCopyFooter;
+  const title = tr[`${mode}Title` as const];
+  const subtitle = tr[`${mode}Subtitle` as const];
+  const btn = result ? tr[`${mode}Again` as const] : tr[`${mode}Btn` as const];
+  const empty = tr[`${mode}Empty` as const];
+  const header = tr[`${mode}Header` as const];
+  const footer = tr[`${mode}Footer` as const];
+  const copyLabel = tr[`${mode}Copy` as const];
+  const copyFooter = tr[`${mode}CopyFooter` as const];
 
   return (
     <main className="flex flex-col min-h-screen px-6 md:px-12 py-8 max-w-5xl mx-auto w-full">
@@ -133,6 +141,30 @@ export default function OfficeMachine({ mode }: { mode: "excuse" | "mail" }) {
                 />
               </div>
             </>
+          )}
+          {isDisaster && (
+            <div>
+              <p className="font-sans text-[10px] tracking-[0.3em] text-[#b0a898] uppercase mb-2">
+                {tr.disasterLevelLabel}
+              </p>
+              <div className="grid grid-cols-1 gap-2">
+                {disasterLevelOptions(lang).map((o) => (
+                  <button
+                    key={o.id}
+                    onClick={() => setLevel(o.id)}
+                    aria-pressed={level === o.id}
+                    className={`
+                      font-sans text-[11px] leading-snug tracking-wide px-3 py-2.5 rounded-sm border transition-colors duration-200
+                      ${level === o.id
+                        ? "border-[#e8b84b] text-[#f5f0e6] bg-[#332e28]"
+                        : "border-[#38342e] text-[#b0a898] hover:border-[rgba(232,184,75,0.5)]"}
+                    `}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           )}
           <button
             onClick={handleGenerate}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Feather, Wind, Briefcase, Mail } from "lucide-react";
+import { Feather, Wind, Briefcase, Mail, CloudLightning } from "lucide-react";
 import { useLanguage } from "@/lib/useLanguage";
 import { t } from "@/lib/translations";
 
@@ -14,6 +14,7 @@ export default function LandingPage() {
     { href: "/calma", Icon: Wind, mode: tr.card2mode, title: tr.card2title, desc: tr.card2desc },
     { href: "/scuse", Icon: Briefcase, mode: tr.card3mode, title: tr.card3title, desc: tr.card3desc },
     { href: "/mail", Icon: Mail, mode: tr.card4mode, title: tr.card4title, desc: tr.card4desc },
+    { href: "/sciagura", Icon: CloudLightning, mode: tr.card5mode, title: tr.card5title, desc: tr.card5desc },
   ];
 
   return (
@@ -54,8 +55,12 @@ export default function LandingPage() {
 
       {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
-        {cards.map(({ href, Icon, mode, title, desc }) => (
-          <Link key={href} href={href} className="group block">
+        {cards.map(({ href, Icon, mode, title, desc }, i) => (
+          <Link
+            key={href}
+            href={href}
+            className={`group block ${i === cards.length - 1 && cards.length % 2 === 1 ? "md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto" : ""}`}
+          >
             <div className="
               relative border border-[rgba(232,184,75,0.3)] rounded-sm p-10
               bg-[#332e28] hover:border-[rgba(232,184,75,0.7)]
